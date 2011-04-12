@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="2_stable"
-	ProjectGUID="{EF004431-C3BE-1D4A-AC86-8E6C8CC2EC1D}"
-	RootNamespace="2_stable"
+	Name="1_simple"
+	ProjectGUID="{E81FCF2C-5900-2441-8ACE-B741DF2BAC78}"
+	RootNamespace="1_simple"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -21,7 +21,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x32\Debug\2_stable"
+			IntermediateDirectory="obj\x32\Debug\1_simple"
 			ConfigurationType="1"
 			CharacterSet="2"
 			>
@@ -52,7 +52,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\2_stable_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple_debug.pdb"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -68,11 +68,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\lib\physicseffects2_lowlevel_debug.lib ..\lib\physicseffects2_baselevel_debug.lib ..\lib\physicseffects2_util_debug.lib opengl32.lib"
-				OutputFile="$(OutDir)\2_stable_debug.exe"
+				OutputFile="$(OutDir)\1_simple_debug.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86"
 				GenerateDebugInformation="true"
-				ProgramDataBaseFileName="$(OutDir)\2_stable_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple_debug.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -104,7 +104,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x64\Debug\2_stable"
+			IntermediateDirectory="obj\x64\Debug\1_simple"
 			ConfigurationType="1"
 			CharacterSet="2"
 			>
@@ -136,7 +136,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\2_stable_x64_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple_x64_debug.pdb"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -152,11 +152,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\lib\physicseffects2_lowlevel_x64_debug.lib ..\lib\physicseffects2_baselevel_x64_debug.lib ..\lib\physicseffects2_util_x64_debug.lib opengl32.lib"
-				OutputFile="$(OutDir)\2_stable_x64_debug.exe"
+				OutputFile="$(OutDir)\1_simple_x64_debug.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86_64"
 				GenerateDebugInformation="true"
-				ProgramDataBaseFileName="$(OutDir)\2_stable_x64_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple_x64_debug.pdb"
 				SubSystem="2"
 				TargetMachine="17"
 			/>
@@ -188,7 +188,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x32\Release\2_stable"
+			IntermediateDirectory="obj\x32\Release\1_simple"
 			ConfigurationType="1"
 			CharacterSet="2"
 			>
@@ -218,7 +218,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\2_stable.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple.pdb"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -234,7 +234,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\lib\physicseffects2_lowlevel.lib ..\lib\physicseffects2_baselevel.lib ..\lib\physicseffects2_util.lib opengl32.lib"
-				OutputFile="$(OutDir)\2_stable.exe"
+				OutputFile="$(OutDir)\1_simple.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86"
 				GenerateDebugInformation="false"
@@ -271,7 +271,7 @@
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x64\Release\2_stable"
+			IntermediateDirectory="obj\x64\Release\1_simple"
 			ConfigurationType="1"
 			CharacterSet="2"
 			>
@@ -302,7 +302,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\2_stable_x64.pdb"
+				ProgramDataBaseFileName="$(OutDir)\1_simple_x64.pdb"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -318,7 +318,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\lib\physicseffects2_lowlevel_x64.lib ..\lib\physicseffects2_baselevel_x64.lib ..\lib\physicseffects2_util_x64.lib opengl32.lib"
-				OutputFile="$(OutDir)\2_stable_x64.exe"
+				OutputFile="$(OutDir)\1_simple_x64.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86_64"
 				GenerateDebugInformation="false"
@@ -365,15 +365,15 @@
 				Filter=""
 				>
 				<Filter
-					Name="2_stable"
+					Name="1_simple"
 					Filter=""
 					>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\2_stable\main.cpp"
+						RelativePath="..\..\sample\api_physics_effects\1_simple\main.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\2_stable\physics_func.cpp"
+						RelativePath="..\..\sample\api_physics_effects\1_simple\physics_func.cpp"
 						>
 					</File>
 				</Filter>

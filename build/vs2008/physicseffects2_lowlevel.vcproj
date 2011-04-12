@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="1_simple"
-	ProjectGUID="{F1DDDFAC-9A2D-6B4E-95BF-63CF8579ECAF}"
-	RootNamespace="1_simple"
+	Name="physicseffects2_lowlevel"
+	ProjectGUID="{2EAAD685-A77D-5D4B-A700-2182D95DBDD7}"
+	RootNamespace="physicseffects2_lowlevel"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -20,9 +20,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x32\Debug\1_simple"
-			ConfigurationType="1"
+			OutputDirectory="..\lib"
+			IntermediateDirectory="obj\x32\Debug\physicseffects2_lowlevel"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 				MinimalRebuild="true"
 				ExceptionHandling="0"
 				BasicRuntimeChecks="3"
@@ -52,7 +52,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\1_simple_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\physicseffects2_lowlevel_debug.pdb"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -60,21 +60,15 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="..\lib\physicseffects2_lowlevel_debug.lib ..\lib\physicseffects2_baselevel_debug.lib ..\lib\physicseffects2_util_debug.lib opengl32.lib"
-				OutputFile="$(OutDir)\1_simple_debug.exe"
-				LinkIncremental="2"
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\physicseffects2_lowlevel_debug.lib"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86"
-				GenerateDebugInformation="true"
-				ProgramDataBaseFileName="$(OutDir)\1_simple_debug.pdb"
-				SubSystem="2"
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -103,9 +97,9 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x64\Debug\1_simple"
-			ConfigurationType="1"
+			OutputDirectory="..\lib"
+			IntermediateDirectory="obj\x64\Debug\physicseffects2_lowlevel"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -127,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 				MinimalRebuild="true"
 				ExceptionHandling="0"
 				BasicRuntimeChecks="3"
@@ -136,7 +130,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\1_simple_x64_debug.pdb"
+				ProgramDataBaseFileName="$(OutDir)\physicseffects2_lowlevel_x64_debug.pdb"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -144,21 +138,15 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="..\lib\physicseffects2_lowlevel_x64_debug.lib ..\lib\physicseffects2_baselevel_x64_debug.lib ..\lib\physicseffects2_util_x64_debug.lib opengl32.lib"
-				OutputFile="$(OutDir)\1_simple_x64_debug.exe"
-				LinkIncremental="2"
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\physicseffects2_lowlevel_x64_debug.lib"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86_64"
-				GenerateDebugInformation="true"
-				ProgramDataBaseFileName="$(OutDir)\1_simple_x64_debug.pdb"
-				SubSystem="2"
-				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -187,9 +175,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x32\Release\1_simple"
-			ConfigurationType="1"
+			OutputDirectory="..\lib"
+			IntermediateDirectory="obj\x32\Release\physicseffects2_lowlevel"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -210,7 +198,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="3"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 				ExceptionHandling="0"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -218,7 +206,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\1_simple.pdb"
+				ProgramDataBaseFileName="$(OutDir)\physicseffects2_lowlevel.pdb"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -226,22 +214,15 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="..\lib\physicseffects2_lowlevel.lib ..\lib\physicseffects2_baselevel.lib ..\lib\physicseffects2_util.lib opengl32.lib"
-				OutputFile="$(OutDir)\1_simple.exe"
-				LinkIncremental="1"
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\physicseffects2_lowlevel.lib"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86"
-				GenerateDebugInformation="false"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -270,9 +251,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="..\..\bin"
-			IntermediateDirectory="obj\x64\Release\1_simple"
-			ConfigurationType="1"
+			OutputDirectory="..\lib"
+			IntermediateDirectory="obj\x64\Release\physicseffects2_lowlevel"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -294,7 +275,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="3"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 				ExceptionHandling="0"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -302,7 +283,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				ProgramDataBaseFileName="$(OutDir)\1_simple_x64.pdb"
+				ProgramDataBaseFileName="$(OutDir)\physicseffects2_lowlevel_x64.pdb"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -310,22 +291,15 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="..\..\include"
+				AdditionalIncludeDirectories="..\..\src\low_level"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="..\lib\physicseffects2_lowlevel_x64.lib ..\lib\physicseffects2_baselevel_x64.lib ..\lib\physicseffects2_util_x64.lib opengl32.lib"
-				OutputFile="$(OutDir)\1_simple_x64.exe"
-				LinkIncremental="1"
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\physicseffects2_lowlevel_x64.lib"
 				AdditionalLibraryDirectories="$(ATISTREAMSDKROOT)\lib\x86_64"
-				GenerateDebugInformation="false"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -357,40 +331,170 @@
 	</References>
 	<Files>
 		<Filter
-			Name="sample"
+			Name="src"
 			Filter=""
 			>
 			<Filter
-				Name="api_physics_effects"
+				Name="low_level"
 				Filter=""
 				>
 				<Filter
-					Name="1_simple"
+					Name="broadphase"
 					Filter=""
 					>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\1_simple\main.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\sample\api_physics_effects\1_simple\physics_func.cpp"
+						RelativePath="..\..\src\low_level\broadphase\pfx_broadphase_single.cpp"
 						>
 					</File>
 				</Filter>
 				<Filter
-					Name="common"
+					Name="collision"
 					Filter=""
 					>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\common\ctrl_func.win32.cpp"
+						RelativePath="..\..\src\low_level\collision\pfx_batched_ray_cast_single.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\common\perf_func.win32.cpp"
+						RelativePath="..\..\src\low_level\collision\pfx_collision_detection_single.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\sample\api_physics_effects\common\render_func.win32.cpp"
+						RelativePath="..\..\src\low_level\collision\pfx_detect_collision_func.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\collision\pfx_intersect_ray_func.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\collision\pfx_island_generation.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\collision\pfx_ray_cast.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\collision\pfx_refresh_contacts_single.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="solver"
+					Filter=""
+					>
+					<File
+						RelativePath="..\..\src\low_level\solver\pfx_constraint_solver_single.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\solver\pfx_joint_constraint_func.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\low_level\solver\pfx_update_rigid_states_single.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="sort"
+					Filter=""
+					>
+					<File
+						RelativePath="..\..\src\low_level\sort\pfx_parallel_sort_single.cpp"
+						>
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="include"
+			Filter=""
+			>
+			<Filter
+				Name="physics_effects"
+				Filter=""
+				>
+				<Filter
+					Name="low_level"
+					Filter=""
+					>
+					<Filter
+						Name="broadphase"
+						Filter=""
+						>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\broadphase\pfx_broadphase.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="collision"
+						Filter=""
+						>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\collision\pfx_batched_ray_cast.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\collision\pfx_collision_detection.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\collision\pfx_island_generation.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\collision\pfx_ray_cast.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\collision\pfx_refresh_contacts.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="solver"
+						Filter=""
+						>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\solver\pfx_constraint_solver.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\solver\pfx_joint_constraint_func.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\solver\pfx_update_rigid_states.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="sort"
+						Filter=""
+						>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\sort\pfx_parallel_sort.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="task"
+						Filter=""
+						>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\task\pfx_sync_components.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\include\physics_effects\low_level\task\pfx_task_manager.h"
+							>
+						</File>
+					</Filter>
+					<File
+						RelativePath="..\..\include\physics_effects\low_level\pfx_low_level_include.h"
 						>
 					</File>
 				</Filter>
