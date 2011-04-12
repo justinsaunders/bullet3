@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="physicseffects2_baselevel"
-	ProjectGUID="{F48694DC-0F66-3944-A076-C15402CA6457}"
+	ProjectGUID="{9A33157B-EF51-B943-8C28-C9F5F190ECCB}"
 	RootNamespace="physicseffects2_baselevel"
 	Keyword="Win32Proj"
 	>
