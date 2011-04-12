@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<Filter Include="sample">
+			<UniqueIdentifier>{B6640920-8EDD-4542-B6F2-6452E60BC0E5}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="sample\api_physics_effects">
+			<UniqueIdentifier>{3E94FAD4-F0CF-DC48-B600-F0A21026D0B1}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="sample\api_physics_effects\1_simple">
+			<UniqueIdentifier>{7B3346DF-C4DA-444E-BC76-18E94E9F3214}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="sample\api_physics_effects\common">
+			<UniqueIdentifier>{BCC56548-2735-9F4F-8F67-5BF2A679EB44}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClCompile Include="..\..\sample\api_physics_effects\1_simple\main.cpp">
+			<Filter>sample\api_physics_effects\1_simple</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\sample\api_physics_effects\1_simple\physics_func.cpp">
+			<Filter>sample\api_physics_effects\1_simple</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\sample\api_physics_effects\common\ctrl_func.win32.cpp">
+			<Filter>sample\api_physics_effects\common</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\sample\api_physics_effects\common\perf_func.win32.cpp">
+			<Filter>sample\api_physics_effects\common</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\sample\api_physics_effects\common\render_func.win32.cpp">
+			<Filter>sample\api_physics_effects\common</Filter>
+		</ClCompile>
+	</ItemGroup>
+</Project>
