@@ -4,6 +4,8 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 #this line has to appear before 'PROJECT' in order to be able to disable incremental linking
 SET(MSVC_INCREMENTAL_DEFAULT ON)
 
+#test
+
 PROJECT(BULLET_PHYSICS)
 SET(BULLET_VERSION 2.77)
 
