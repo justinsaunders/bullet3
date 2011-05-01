@@ -10,6 +10,5 @@ IF (WIN32)
 	4_motion_type
 	5_raycast
 	6_joint
-	common
 	)
 ENDIF()

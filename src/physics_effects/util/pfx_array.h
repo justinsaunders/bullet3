@@ -17,7 +17,7 @@ Physics Effects under the filename: physics_effects_license.txt
 #ifndef _SCE_PFX_ARRAY_H
 #define _SCE_PFX_ARRAY_H
 
-#include "../../include/physics_effects/base_level/base/pfx_common.h"
+#include "../../../include/physics_effects/base_level/base/pfx_common.h"
 #include "pfx_util_common.h"
 
 namespace sce {

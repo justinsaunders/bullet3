@@ -1,5 +1,5 @@
 SUBDIRS( 
-	base_level 
-	low_level 
-	util 
+	physics_effects/base_level 
+	physics_effects/low_level 
+	physics_effects/util 
 )

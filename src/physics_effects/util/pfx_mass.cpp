@@ -14,7 +14,7 @@ A copy of the BSD License is distributed with
 Physics Effects under the filename: physics_effects_license.txt
 */
 
-#include "../../include/physics_effects/util/pfx_mass.h"
+#include "../../../include/physics_effects/util/pfx_mass.h"
 
 namespace sce {
 namespace PhysicsEffects {
