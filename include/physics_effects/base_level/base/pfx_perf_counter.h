@@ -29,7 +29,7 @@ Physics Effects under the filename: physics_effects_license.txt
 #define SCE_PFX_MAX_PERF_STR	32
 #define SCE_PFX_MAX_PERF_COUNT	20
 
-//#define SCE_PFX_USE_PERFCOUNTER
+#define SCE_PFX_USE_PERFCOUNTER
 //#define SCE_PFX_USE_BOOKMARK
 
 namespace sce {

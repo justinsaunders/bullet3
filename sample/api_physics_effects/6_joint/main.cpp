@@ -177,40 +177,41 @@ static int shutdown(void)
 	return 0;
 }
 
-static void update(void)
+static void update(float deltaTime)
 {
+	float dt = deltaTime*10.f;
 	float angX,angY,r;
 	render_get_view_angle(angX,angY,r);
 
 	ctrl_update();
 	
 	if(ctrl_button_pressed(BTN_UP)) {
-		angX -= 0.05f;
+		angX -= 0.05f*dt;
 		if(angX < -1.4f) angX = -1.4f;
 		if(angX > -0.01f) angX = -0.01f;
 	}
 
 	if(ctrl_button_pressed(BTN_DOWN)) {
-		angX += 0.05f;
+		angX += 0.05f*dt;
 		if(angX < -1.4f) angX = -1.4f;
 		if(angX > -0.01f) angX = -0.01f;
 	}
 
 	if(ctrl_button_pressed(BTN_LEFT)) {
-		angY -= 0.05f;
+		angY -= 0.05f*dt;
 	}
 
 	if(ctrl_button_pressed(BTN_RIGHT)) {
-		angY += 0.05f;
+		angY += 0.05f*dt;
 	}
 
 	if(ctrl_button_pressed(BTN_ZOOM_OUT)) {
-		r *= 1.1f;
+		r *= (1.f+0.1f*dt);
 		if(r > 500.0f) r = 500.0f;
 	}
 
 	if(ctrl_button_pressed(BTN_ZOOM_IN)) {
-		r *= 0.9f;
+		r *= (1.f-0.1f*dt);
 		if(r < 1.0f) r = 1.0f;
 	}
 
@@ -442,6 +443,35 @@ bool createWindow(char* title, int width, int height)
 	return TRUE;
 }
 
+static float sLocalTime = 0.f;
+static float sFixedTimeStep = 1.f/60.f;
+
+void stepSimulation(float dt)
+{
+	int maxSubSteps = 10;
+	int numSimulationSubSteps = 0;
+	if (maxSubSteps)
+	{
+		//fixed timestep with interpolation
+		sLocalTime += dt;
+		if (sLocalTime >= sFixedTimeStep)
+		{
+			numSimulationSubSteps = int( sLocalTime / sFixedTimeStep);
+			sLocalTime -= numSimulationSubSteps * sFixedTimeStep;
+		}
+		if (numSimulationSubSteps)
+		{
+			//clamp the number of substeps, to prevent simulation grinding spiralling down to a halt
+			int clampedSimulationSteps = (numSimulationSubSteps > maxSubSteps)? maxSubSteps : numSimulationSubSteps;
+			for (int i=0;i<clampedSimulationSteps;i++)
+			{
+				physics_simulate();
+			}
+		} 
+	}
+}
+
+
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
 	if(!createWindow(SAMPLE_NAME,DISPLAY_WIDTH,DISPLAY_HEIGHT)) {
@@ -452,7 +482,10 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	init();
 	
 	physics_create_scene(sceneId);
-	
+
+	PfxPerfCounter counter;
+	counter.countBegin("dt");
+
 	SCE_PFX_PRINTF("## %s: INIT SUCCEEDED ##\n", SAMPLE_NAME);
 	
 	MSG msg;
@@ -467,11 +500,21 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 			}
 		}
 		else {
-			update();
-			if(simulating) physics_simulate();
+			counter.countEnd();
+			float dt = counter.getCountTime(0)/1000.f;
+
+			update(dt);
+
+			if(simulating) 
+				stepSimulation(dt);
+
+			counter.resetCount();
+			counter.countBegin("dt");
+
 			render();
 
 			perf_sync();
+
 		}
 	}
 
