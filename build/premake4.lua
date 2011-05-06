@@ -44,7 +44,9 @@ solution "MySolution"
   
 
 	function findOpenCL()
-	-- todo: add NVIDIA / Intel OpenCL environment vars
+	-- todo: add Apple and Intel OpenCL environment vars
+	-- todo: allow multiple SDKs
+	
 		configuration {}
 		local amdopenclpath = os.getenv("AMDAPPSDKROOT")
 		if (amdopenclpath) then
@@ -59,6 +61,24 @@ solution "MySolution"
 			configuration {}
 			return true
 		end
+
+		configuration {}
+		local nvidiaopenclpath = os.getenv("CUDA_PATH")
+		if (nvidiaopenclpath) then
+			defines { "ADL_ENABLE_CL" }
+			includedirs {
+				"$(CUDA_PATH)/include"				
+			}
+			configuration "x32"
+				libdirs {"$(CUDA_PATH)/lib/Win32"}
+			configuration "x64"
+				libdirs {"$(CUDA_PATH)/lib/x64"}
+			configuration {}
+			return true
+		end
+
+		
+
 		return false
 	end
 
