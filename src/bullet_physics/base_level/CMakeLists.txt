@@ -1,0 +1,17 @@
+INCLUDE_DIRECTORIES(  . )
+
+SET(BulletBaseLevel_SRCS
+						
+			
+)
+
+SET(BulletBaseLevel_HDRS
+)
+
+
+
+
+ADD_LIBRARY(BulletBaseLevel ${BulletBaseLevel_SRCS} ${BulletBaseLevel_HDRS})
+
+SET_TARGET_PROPERTIES(BulletBaseLevel PROPERTIES VERSION ${BULLET_VERSION})
+SET_TARGET_PROPERTIES(BulletBaseLevel PROPERTIES SOVERSION ${BULLET_VERSION})
