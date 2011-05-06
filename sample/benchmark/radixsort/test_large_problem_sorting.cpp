@@ -61,9 +61,9 @@
 */
 
 #include "Adl/Adl.h"
-#include <AdlPrimitives/Sort/RadixSort.h>
+#include "AdlPrimitives/Sort/RadixSort.h"
 
-KernelManager* KernelManager::s_kManager2 = NULL;
+KernelManager* KernelManager::s_kManager = NULL;
 
 /***********************
 *
@@ -201,8 +201,9 @@ void TimedSort(
 
 		// Move a fresh copy of the problem into device storage
 		buffer.write(sortData,num_elements);
+		DeviceUtils::waitForCompletion( deviceData);
 
-		// Start cuda timing record
+		// Start GPU timing record
 		watch.start();
 		
 		// Call the sorting API routine
@@ -212,7 +213,7 @@ void TimedSort(
 		watch.stop();
 		duration = watch.getMs();
 
-		// End cuda timing record
+		// End GPU timing record
 		elapsed += (double) duration;
 	}
 

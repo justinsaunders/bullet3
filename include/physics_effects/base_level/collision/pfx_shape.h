@@ -56,6 +56,7 @@ private:
 		PfxUInt32 m_vecDataI[3];
 		void	  *m_vecDataPtr[2];
 	};
+	
 	PfxUInt8 m_type;
 	SCE_PFX_PADDING(1,3)
 	PfxFloat m_offsetPosition[3];
@@ -65,6 +66,9 @@ private:
 	SCE_PFX_PADDING(2,12)
 
 public:
+
+	void* m_convexPolyhedron;
+
 	inline void reset();
 	
 	// Shape

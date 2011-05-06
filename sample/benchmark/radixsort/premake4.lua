@@ -1,16 +1,17 @@
-	project "test_large_problem_sorting"
 	
 	hasCL = findOpenCL()
 	
 	if (hasCL) then
+
+		project "test_large_problem_sorting"
+
 		language "C++"
 				
 		kind "ConsoleApp"
 		targetdir "../../../bin"
-		includedirs {"../../../include"}
+		includedirs {"../../../include/gpu_research"}
 		
 		links {
---		"physicseffects2_baselevel",
 		"OpenCL"
 		}
 		

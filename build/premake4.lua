@@ -25,6 +25,16 @@ solution "MySolution"
     trigger     = "no-pelibs",
     description = "Disable Physics Effects libraries"
   }
+  
+  newoption {
+    trigger     = "no-bulletlibs",
+    description = "Disable Bullet Physics libraries"
+  }
+
+  newoption {
+    trigger     = "no-bulletdemos",
+    description = "Disable Bullet Physics demos"
+  }
  
   
   newoption {
@@ -57,8 +67,9 @@ solution "MySolution"
 	location "build"
 	targetdir "bin"
 
---	include "../sample/benchmark/radixsort"
-
+	include "../sample/benchmark/radixsort"
+	include "../sample/api_gpu_research/unit_test"
+	
 -- the c-api option is work in progress and disabled by default
 if  _OPTIONS["with-capi"] then
 	include "../sample/c_api/device"
@@ -72,8 +83,7 @@ end
 		include "../src/physics_effects/low_level"
 		include "../src/physics_effects/util"
 	end
-	
-  
+
 	if not _OPTIONS["no-pedemos"] and not _OPTIONS["no-pelibs"] then
 		include "../sample/api_physics_effects/0_console"
 		include "../sample/api_physics_effects/1_simple"
@@ -84,5 +94,20 @@ end
 		include "../sample/api_physics_effects/5_raycast"
 		include "../sample/api_physics_effects/6_joint"
   end
+
+	if not _OPTIONS["no-bulletdemos"] and not _OPTIONS["no-bulletlibs"] then
+		include "../sample/api_bullet_physics/3_bt_simpleconvex"
+		include "../sample/api_bullet_physics/0_bt_stopwatch"
+		include "../sample/api_bullet_physics/1_bt_arraytest"
+		include "../sample/api_bullet_physics/2_bt_convexclipping"
+	end
 	
+	if not _OPTIONS["no-bulletlibs"] then
+		include "../src/bullet_physics/base_level"
+--		include "../src/bullet_physics/low_level"
+		include "../src/bullet_physics/util"
+	end
+	
+
+		
 --	include "../sample/graphics/20_opengltest"

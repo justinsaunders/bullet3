@@ -88,6 +88,8 @@ PfxHeapManager pool(poolBuff,POOL_BYTES);
 // Simulation Function
 
 int frame = 0;
+int curNumPairs = 0;
+int curTotalContacts = 0;
 
 void broadphase()
 {
@@ -147,6 +149,8 @@ void broadphase()
 		if(ret != SCE_PFX_OK) SCE_PFX_PRINTF("pfxFindPairs failed %d\n",ret);
 		
 		pool.deallocate(findPairsParam.workBuff);
+
+		curNumPairs = findPairsResult.numPairs;
 
 		//J 交差ペア合成
 		//E Decompose overlapped pairs into 3 arrays
@@ -243,6 +247,20 @@ void collision()
 		if(ret != SCE_PFX_OK) SCE_PFX_PRINTF("pfxDetectCollision failed %d\n",ret);
 	}
 
+	curTotalContacts = 0;
+
+	for(PfxUInt32 i=0;i<numCurrentPairs;i++) {
+		PfxConstraintPair &pair = currentPairs[i];
+	
+		PfxUInt16 iA = pfxGetObjectIdA(pair);
+		PfxUInt16 iB = pfxGetObjectIdB(pair);
+		PfxUInt32 iConstraint = pfxGetConstraintId(pair);
+
+		PfxContactManifold &contact = contacts[iConstraint];
+		curTotalContacts += contact.getNumContacts();
+	}
+
+
 	//J リフレッシュ
 	//E Refresh contacts
 	{
@@ -256,6 +274,10 @@ void collision()
 		int ret = pfxRefreshContacts(param);
 		if(ret != SCE_PFX_OK) SCE_PFX_PRINTF("pfxRefreshContacts failed %d\n",ret);
 	}
+
+
+	
+
 }
 
 void constraintSolver()
@@ -388,14 +410,19 @@ void physics_simulate()
 	
 	frame++;
 	
-	if(frame%100 == 0) {
+	//if(frame%100 == 0) 
+	{
 		float broadphaseTime = pc.getCountTime(0);
 		float collisionTime  = pc.getCountTime(2);
 		float solverTime     = pc.getCountTime(4);
 		float integrateTime  = pc.getCountTime(6);
+		SCE_PFX_PRINTF("#pairs = %d, #contacts = %d\n", curNumPairs, curTotalContacts);
+
 		SCE_PFX_PRINTF("frame %3d broadphase %.2f collision %.2f solver %.2f integrate %.2f | total %.2f\n",frame,
 			broadphaseTime,collisionTime,solverTime,integrateTime,
 			broadphaseTime+collisionTime+solverTime+integrateTime);
+
+
 	}
 }
 
@@ -690,14 +717,14 @@ void createSceneJoints()
 void createSceneStacking()
 {
        const float cubeSize = 1.0f;
-
+/*
        createPyramid(PfxVector3(-20.0f,0.0f,0.0f),12,PfxVector3(cubeSize,cubeSize,cubeSize));
        createWall(PfxVector3(-2.0f,0.0f,0.0f),12,PfxVector3(cubeSize,cubeSize,cubeSize));
        createWall(PfxVector3(4.0f,0.0f,0.0f),12,PfxVector3(cubeSize,cubeSize,cubeSize));
        createWall(PfxVector3(10.0f,0.0f,0.0f),12,PfxVector3(cubeSize,cubeSize,cubeSize));
        createTowerCircle(PfxVector3(25.0f,0.0f,0.0f),8,24,PfxVector3(cubeSize,cubeSize,cubeSize));
-
-//	createTowerCircle(PfxVector3(0.0f,0.0f,0.0f),8,24,PfxVector3(1));
+*/
+	createTowerCircle(PfxVector3(0.0f,0.0f,0.0f),8,24,PfxVector3(1));
 }
 
 void createSceneBoxGround()
