@@ -1,4 +1,4 @@
-	project "physicseffects2_lowlevel"
+	project "physics_effects_low_level"
 		
 	kind "StaticLib"
 	targetdir "../../build/lib"	

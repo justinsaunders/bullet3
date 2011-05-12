@@ -3,7 +3,7 @@
 	
 	if (hasCL) then
 
-		project "test_large_problem_sorting"
+		project "gpu_benchmark_radixsort"
 
 		language "C++"
 				

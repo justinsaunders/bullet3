@@ -25,6 +25,7 @@ void PfxShape::reset()
 	m_offsetOrientation[0] = m_offsetOrientation[1] = m_offsetOrientation[2]= 0.0f;
 	m_offsetOrientation[3] = 1.0f;
 	m_contactFilterSelf = m_contactFilterTarget = 0xffffffff;
+	m_convexPolyhedron = 0;
 }
 
 inline

@@ -10,6 +10,7 @@
 #define MAXSIZE 256
 #define MAXINDICESPERFACE 64
 
+typedef sce::PhysicsEffects::PfxMatrix3 btMatrix3x3;
 typedef sce::PhysicsEffects::PfxVector3 btVector3;
 
 template <class T>

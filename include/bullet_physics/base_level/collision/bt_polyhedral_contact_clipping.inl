@@ -24,6 +24,11 @@ subject to the following restrictions:
 #include <float.h> //for FLT_MAX
 #include <assert.h>
 
+int gActualNbTests=0;
+int gExpectedNbTests=0;
+int gActualSATPairTests=0;
+bool gUseInternalObject=true;
+
 
 // Clips a face to the back of a plane
 template<typename BT_CONTACT_CACHE, typename BT_VERTEX_ARRAY>
@@ -96,13 +101,67 @@ static bool TestSepAxis(const btConvexPolyhedron& hullA, const btConvexPolyhedro
 
 
 
-static int gActualSATPairTests=0;
-
 inline bool IsAlmostZero(const btVector3& v)
 {
 	if(fabsf(VMGETX(v))>1e-6 || fabsf(VMGETY(v))>1e-6 || fabsf(VMGETZ(v))>1e-6)	return false;
 	return true;
 }
+
+
+#ifdef TEST_INTERNAL_OBJECTS
+
+inline void BoxSupport(const btVector3& extents, const btVector3& sv, btVector3& p)
+{
+	p[0] = sv[0] < 0.0f ? -extents[0] : extents[0];
+	p[1] = sv[1] < 0.0f ? -extents[1] : extents[1];
+	p[2] = sv[2] < 0.0f ? -extents[2] : extents[2];
+}
+
+void InverseTransformPoint3x3(btVector3& out, const btVector3& in, const btTransform& tr)
+{
+	const btMatrix3x3& rot = VMGETBASIS(tr);
+	btVector3 r0 = rot.getRow(0);
+	btVector3 r1 = rot.getRow(1);
+	btVector3 r2 = rot.getRow(2);
+	
+	const btScalar x = VMGETX(r0)*VMGETX(in) + VMGETX(r1)*VMGETY(in) + VMGETX(r2)*VMGETZ(in);
+	const btScalar y = VMGETY(r0)*VMGETX(in) + VMGETY(r1)*VMGETY(in) + VMGETY(r2)*VMGETZ(in);
+	const btScalar z = VMGETZ(r0)*VMGETX(in) + VMGETZ(r1)*VMGETY(in) + VMGETZ(r2)*VMGETZ(in);
+
+	VMSET(out,x,y,z);
+}
+
+bool TestInternalObjects( const btTransform& trans0, const btTransform& trans1, const btVector3& delta_c, const btVector3& axis, const btConvexPolyhedron& convex0, const btConvexPolyhedron& convex1, btScalar dmin)
+{
+	const btScalar dp = VMDOT(delta_c,axis);
+
+	btVector3 localAxis0;
+	InverseTransformPoint3x3(localAxis0, axis,trans0);
+	btVector3 localAxis1;
+	InverseTransformPoint3x3(localAxis1, axis,trans1);
+
+	btVector3 p0;
+	BoxSupport(convex0.m_extents, localAxis0, p0);
+	btVector3 p1;
+	BoxSupport(convex1.m_extents, localAxis1, p1);
+
+	const btScalar Radius0 = p0[0]*VMGETX(localAxis0) + p0[1]*VMGETY(localAxis0) + p0[2]*VMGETZ(localAxis0);
+	const btScalar Radius1 = p1[0]*VMGETX(localAxis1) + p1[1]*VMGETY(localAxis1) + p1[2]*VMGETZ(localAxis1);
+
+	const btScalar MinRadius = Radius0>convex0.m_radius ? Radius0 : convex0.m_radius;
+	const btScalar MaxRadius = Radius1>convex1.m_radius ? Radius1 : convex1.m_radius;
+
+	const btScalar MinMaxRadius = MaxRadius + MinRadius;
+	const btScalar d0 = MinMaxRadius + dp;
+	const btScalar d1 = MinMaxRadius - dp;
+
+	const btScalar depth = d0<d1 ? d0:d1;
+	if(depth>dmin)
+		return false;
+	return true;
+}
+#endif //TEST_INTERNAL_OBJECTS
+
 
 template<typename BT_CONTACT_CACHE, typename BT_VERTEX_ARRAY>
 bool btPolyhedralContactClipping<typename BT_CONTACT_CACHE, typename BT_VERTEX_ARRAY>::findSeparatingAxis(	const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, btVector3& sep)
@@ -110,8 +169,8 @@ bool btPolyhedralContactClipping<typename BT_CONTACT_CACHE, typename BT_VERTEX_A
 	gActualSATPairTests++;
 
 #ifdef TEST_INTERNAL_OBJECTS
-	const btVector3 c0 = transA * hullA.mLocalCenter;
-	const btVector3 c1 = transB * hullB.mLocalCenter;
+	const btVector3 c0 = VMTRANS(transA,hullA.m_localCenter);
+	const btVector3 c1 = VMTRANS(transB,hullB.m_localCenter);
 	const btVector3 DeltaC2 = c0 - c1;
 #endif
 

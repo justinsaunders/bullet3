@@ -54,7 +54,7 @@ struct PfxCreateConvexMeshParam {
 	}
 };
 
-PfxInt32 pfxCreateConvexMesh(PfxConvexMesh &convex,const PfxCreateConvexMeshParam &param);
+PfxInt32 pfxCreateConvexMesh(PfxConvexMesh &convex,const PfxCreateConvexMeshParam &param, float scale=1.f);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Large Mesh

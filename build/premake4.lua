@@ -1,4 +1,4 @@
-solution "MySolution"
+solution "0MySolution"
 
 	configurations {"Debug", "Release"}
 	configuration "Release"
@@ -87,7 +87,7 @@ solution "MySolution"
 	location "build"
 	targetdir "bin"
 
-	include "../sample/benchmark/radixsort"
+	include "../sample/api_gpu_research/benchmark_radixsort"
 	include "../sample/api_gpu_research/unit_test"
 	
 -- the c-api option is work in progress and disabled by default
@@ -116,10 +116,8 @@ end
   end
 
 	if not _OPTIONS["no-bulletdemos"] and not _OPTIONS["no-bulletlibs"] then
-		include "../sample/api_bullet_physics/3_bt_simpleconvex"
-		include "../sample/api_bullet_physics/0_bt_stopwatch"
-		include "../sample/api_bullet_physics/1_bt_arraytest"
-		include "../sample/api_bullet_physics/2_bt_convexclipping"
+		include "../sample/api_bullet_physics/1_simple_convex"
+		include "../sample/api_bullet_physics/2_stable_convex"
 	end
 	
 	if not _OPTIONS["no-bulletlibs"] then

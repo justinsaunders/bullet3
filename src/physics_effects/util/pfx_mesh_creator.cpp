@@ -26,7 +26,7 @@ namespace PhysicsEffects {
 ///////////////////////////////////////////////////////////////////////////////
 // 凸メッシュ作成時に使用する関数
 
-PfxInt32 pfxCreateConvexMesh(PfxConvexMesh &convex,const PfxCreateConvexMeshParam &param)
+PfxInt32 pfxCreateConvexMesh(PfxConvexMesh &convex,const PfxCreateConvexMeshParam &param, float scale)
 {
 	// Check input
 	if(param.numVerts == 0 || param.numTriangles == 0 || !param.verts || !param.triangles)
@@ -38,7 +38,7 @@ PfxInt32 pfxCreateConvexMesh(PfxConvexMesh &convex,const PfxCreateConvexMeshPara
 	PfxArray<PfxVector3> vertList;
 	for(PfxUInt32 i=0;i<param.numVerts;i++) {
 		PfxFloat *vtx = (PfxFloat*)((uintptr_t)param.verts + param.vertexStrideBytes * i);
-		vertList.push(PfxVector3(vtx[0],vtx[1],vtx[2]));
+		vertList.push(PfxVector3(vtx[0]*scale,vtx[1]*scale,vtx[2]*scale));
 	}
 
 	PfxArray<PfxUInt32> facetList;

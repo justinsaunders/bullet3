@@ -21,23 +21,18 @@ Physics Effects under the filename: physics_effects_license.txt
 #include "physics_func.h"
 #include "barrel.h"
 #include "landscape.h"
-#include "bullet_physics/util/bt_stopwatch.h"
-
-
-
-btStopwatch sClock;
 
 #ifdef _WIN32
 	#include <gl/gl.h>
 	#include <gl/glu.h>
 #endif
 
-#define	SAMPLE_NAME "api_physics_effects/1_simple_convex"
+#define	SAMPLE_NAME "api_physics_effects/2_stable"
 
 static bool s_isRunning = true;
 
-int sceneId = 0;
-bool simulating = false;
+int sceneId = 2;
+bool simulating = true;
 
 int landscapeMeshId;
 int convexMeshId;
@@ -93,7 +88,7 @@ static void render(void)
 				render_mesh(
 					worldT,
 					PfxVector3(1,1,1),
-					convexMeshId);
+					convexMeshId,2.f);
 				break;
 
 				case kPfxShapeLargeTriMesh:
@@ -114,12 +109,6 @@ static void render(void)
 
 static int init(void)
 {
-
-	sClock.reset();
-
-	//sHost.init();
-	//sHost.start();
-	
 	perf_init();
 	ctrl_init();
 	render_init();
@@ -150,9 +139,9 @@ static int shutdown(void)
 	return 0;
 }
 
-static void update(float m)
+static void update(float deltaTime)
 {
-	float dt = m*10.f;
+	float dt = deltaTime*10.f;
 	float angX,angY,r;
 	render_get_view_angle(angX,angY,r);
 
@@ -209,29 +198,6 @@ static void update(float m)
 	}
 
 	render_set_view_angle(angX,angY,r);
-
-	PfxVector3 pickPos;
-
-	if(ctrl_button_pressed(BTN_PICK) == BTN_STAT_DOWN) {
-		int sx,sy;
-		ctrl_get_cursor_position(sx,sy);
-		PfxVector3 wp1((float)sx,(float)sy,0.0f);
-		PfxVector3 wp2((float)sx,(float)sy,1.0f);
-		wp1 = render_get_world_position(wp1);
-		wp2 = render_get_world_position(wp2);
-		pickPos = physics_pick_start(wp1,wp2);
-	}
-	else if(ctrl_button_pressed(BTN_PICK) == BTN_STAT_KEEP) {
-		int sx,sy;
-		ctrl_get_cursor_position(sx,sy);
-		PfxVector3 sp = render_get_screen_position(pickPos);
-		PfxVector3 wp((float)sx,(float)sy,sp[2]);
-		wp = render_get_world_position(wp);
-		physics_pick_update(wp);
-	}
-	else if(ctrl_button_pressed(BTN_PICK) == BTN_STAT_UP) {
-		physics_pick_end();
-	}
 }
 
 #ifndef _WIN32
@@ -416,13 +382,9 @@ bool createWindow(char* title, int width, int height)
 static float sLocalTime = 0.f;
 static float sFixedTimeStep = 1.f/60.f;
 
-
 void stepSimulation(float dt)
 {
-	int maxSubSteps = 1;
-	
-	
-
+	int maxSubSteps = 10;
 	int numSimulationSubSteps = 0;
 	if (maxSubSteps)
 	{
@@ -446,7 +408,6 @@ void stepSimulation(float dt)
 }
 
 
-
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
 	if(!createWindow(SAMPLE_NAME,DISPLAY_WIDTH,DISPLAY_HEIGHT)) {
@@ -457,13 +418,14 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	init();
 	
 	physics_create_scene(sceneId);
-	
+
+	PfxPerfCounter counter;
+	counter.countBegin("dt");
+
 	SCE_PFX_PRINTF("## %s: INIT SUCCEEDED ##\n", SAMPLE_NAME);
 	
 	MSG msg;
 	while(s_isRunning) {
-		
-
 		if(PeekMessage(&msg,NULL,0,0,PM_REMOVE)) {
 			if(msg.message==WM_QUIT) {
 				s_isRunning = false;
@@ -474,20 +436,19 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 			}
 		}
 		else {
-			
-			//sHost.stop();
-			
-			//float dt = sHost.getMs()/1000.f;
-			float dt = sClock.getTimeMilliseconds()/1000.f;
-			//sHost.start();
-			sClock.reset();
+			counter.countEnd();
+			float dt = counter.getCountTime(0)/1000.f;
 
 			update(dt);
 
 			if(simulating) 
-				stepSimulation(dt);//physics_simulate();
+				stepSimulation(dt);
+
+			counter.resetCount();
+			counter.countBegin("dt");
+
 			render();
-			
+
 			perf_sync();
 		}
 	}

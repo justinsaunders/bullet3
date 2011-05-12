@@ -1,13 +1,13 @@
-	project "2_stable"
+	project "pe_sample_2_stable"
 		
 	kind "WindowedApp"
 	targetdir "../../../bin"
 	includedirs {"../../../include"}
 		
 	links {
-		"physicseffects2_lowlevel",
-		"physicseffects2_baselevel",
-		"physicseffects2_util",
+		"physics_effects_low_level",
+		"physics_effects_base_level",
+		"physics_effects_util",
 		"opengl32"
 	}
 	

@@ -1,15 +1,15 @@
-	project "3_bt_simpleconvex"
+	project "bt_sample_2_stable_convex"
 		
 	kind "WindowedApp"
 	targetdir "../../../bin"
 	includedirs {"../../../include"}
 		
 	links {
-		"bullet_physics_util",
 		"bullet_physics_base_level",
-		"physicseffects2_lowlevel",
-		"physicseffects2_baselevel",
-		"physicseffects2_util",
+		"bullet_physics_util",
+		"physics_effects_low_level",
+		"physics_effects_base_level",
+		"physics_effects_util",
 		"opengl32"
 	}
 	
@@ -20,5 +20,5 @@
 		"physics_func.cpp",
 		"../common/ctrl_func.win32.cpp",
 		"../common/perf_func.win32.cpp",
-		"../common/render_func.win32.cpp",
+		"../common/render_func.win32.cpp"
 	}

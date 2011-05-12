@@ -331,7 +331,7 @@ int render_init_mesh(
 void render_mesh(
 	const PfxTransform3 &transform,
 	const PfxVector3 &color,
-	int meshId)
+	int meshId, float scaling)
 {
 	assert(meshId>=0&&meshId<MAX_MESH);
 	
@@ -345,7 +345,7 @@ void render_mesh(
 	glEnableClientState(GL_VERTEX_ARRAY);
 	
 	glVertexPointer(3,GL_FLOAT,0,buff.vtx);
-
+	glScalef(scaling,scaling,scaling);
 	glColor3fv((float*)&color);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glPolygonOffset(1.0f,1.0f);
@@ -356,7 +356,7 @@ void render_mesh(
 	glDrawElements(GL_LINES,buff.numIdx*2,GL_UNSIGNED_SHORT,buff.wire_idx);
 	
 	glDisableClientState(GL_VERTEX_ARRAY);
-	
+	glScalef(1.f,1.f,1.f);
 	glPopMatrix();
 }
 

@@ -30,17 +30,31 @@ struct btFace
 	float	m_plane[4];
 };
 
+#define TEST_INTERNAL_OBJECTS 1
 
-class btConvexPolyhedron
+
+class SCE_PFX_ALIGNED(16) btConvexPolyhedron
 {
 	public:
+	BT_DECLARE_ALIGNED_ALLOCATOR()
+
 	btConvexPolyhedron();
 	virtual	~btConvexPolyhedron();
+
+	btVector3		m_localCenter;
 
 	btAlignedObjectArray<btVector3>	m_vertices;
 	btAlignedObjectArray<btFace>	m_faces;
 	btAlignedObjectArray<btVector3> m_uniqueEdges;
-	btVector3		m_localCenter;
+
+#ifdef TEST_INTERNAL_OBJECTS
+	btVector3		m_extents;
+	btScalar		m_radius;
+	btVector3		mC;
+	btVector3		mE;
+	bool testContainment() const;
+
+#endif //TEST_INTERNAL_OBJECTS
 
 	void	initialize();
 

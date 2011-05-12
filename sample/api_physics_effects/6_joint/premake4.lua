@@ -1,13 +1,13 @@
-	project "6_joint"
+	project "pe_sample_6_joint"
 		
 	kind "WindowedApp"
 	targetdir "../../../bin"
 	includedirs {"../../../include"}
 		
 	links {
-		"physicseffects2_lowlevel",
-		"physicseffects2_baselevel",
-		"physicseffects2_util",
+		"physics_effects_low_level",
+		"physics_effects_base_level",
+		"physics_effects_util",
 		"opengl32"
 	}
 	

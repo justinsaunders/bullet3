@@ -102,6 +102,16 @@ public:
 };
 
 
+#define BT_DECLARE_ALIGNED_ALLOCATOR() \
+   inline void* operator new(size_t sizeInBytes)   { return btAlignedAlloc(sizeInBytes,16); }   \
+   inline void  operator delete(void* ptr)         { btAlignedFree(ptr); }   \
+   inline void* operator new(size_t, void* ptr)   { return ptr; }   \
+   inline void  operator delete(void*, void*)      { }   \
+   inline void* operator new[](size_t sizeInBytes)   { return btAlignedAlloc(sizeInBytes,16); }   \
+   inline void  operator delete[](void* ptr)         { btAlignedFree(ptr); }   \
+   inline void* operator new[](size_t, void* ptr)   { return ptr; }   \
+   inline void  operator delete[](void*, void*)      { }   \
+
 
 #endif //BT_ALIGNED_ALLOCATOR
 

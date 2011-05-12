@@ -64,7 +64,8 @@ int render_init_mesh(
 void render_mesh(
 	const PfxTransform3 &transform,
 	const PfxVector3 &color,
-	int meshId);
+	int meshId,
+	float scaling=1.f);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Debug Drawing

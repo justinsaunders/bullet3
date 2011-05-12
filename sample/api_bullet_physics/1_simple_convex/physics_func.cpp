@@ -105,9 +105,85 @@ PfxLargeTriMesh gLargeMesh;
 
 //J 凸メッシュ
 //E Convex Mesh
-#include "barrel.h"
 PfxConvexMesh gConvex;
 
+
+#define MyBarrelVtxCount 57
+#define MyBarrelIdxCount 180
+
+static float MyBarrelVtx[] = {
+0.0f,-0.5f,0.0f,				0.0f,-1.0f,0.0f,
+0.282362f,-0.5f,-0.205148f,     0.0f,-1.0f,0.0f,
+0.349018f,-0.5f,0.0f,           0.0f,-1.0f,0.0f,
+0.107853f,-0.5f,-0.331936f,     0.0f,-1.0f,0.0f,
+-0.107853f,-0.5f,-0.331936f,    0.0f,-1.0f,0.0f,
+0.107853f,-0.5f,-0.331936f,     0.0f,-1.0f,0.0f,
+-0.282362f,-0.5f,-0.205148f,    0.0f,-1.0f,0.0f,
+-0.349018f,-0.5f,0.0f,          0.0f,-1.0f,0.0f,
+-0.282362f,-0.5f,0.205148f,     0.0f,-1.0f,0.0f,
+-0.107853f,-0.5f,0.331936f,     0.0f,-1.0f,0.0f,
+0.107853f,-0.5f,0.331936f,      0.0f,-1.0f,0.0f,
+0.282362f,-0.5f,0.205148f,      0.0f,-1.0f,0.0f,
+0.0f,0.5f,0.0f,                 0.0f,1.0f,0.0f,
+0.349018f,0.5f,0.0f,            0.0f,1.0f,0.0f,
+0.282362f,0.5f,-0.205148f,      0.0f,1.0f,0.0f,
+0.107853f,0.5f,-0.331936f,      0.0f,1.0f,0.0f,
+0.107853f,0.5f,-0.331936f,      0.0f,1.0f,0.0f,
+-0.107853f,0.5f,-0.331936f,     0.0f,1.0f,0.0f,
+-0.282362f,0.5f,-0.205148f,     0.0f,1.0f,0.0f,
+-0.349018f,0.5f,0.0f,           0.0f,1.0f,0.0f,
+-0.282362f,0.5f,0.205148f,      0.0f,1.0f,0.0f,
+-0.107853f,0.5f,0.331936f,      0.0f,1.0f,0.0f,
+0.107853f,0.5f,0.331936f,       0.0f,1.0f,0.0f,
+0.282362f,0.5f,0.205148f,       0.0f,1.0f,0.0f,
+0.349018f,-0.5f,0.0f,           0.957307f,-0.289072f,0.0f,
+0.404509f,0.0f,-0.293893f,      0.809017f,0.0f,-0.587785f,
+0.5f,0.0f,0.0f,                 1.0f,0.0f,0.0f,
+0.282362f,-0.5f,-0.205148f,     0.774478f,-0.289072f,-0.562691f,
+0.154508f,0.0f,-0.475528f,      0.309017f,0.0f,-0.951057f,
+0.107853f,-0.5f,-0.331936f,     0.295824f,-0.289072f,-0.910453f,
+0.107853f,-0.5f,-0.331936f,     0.295824f,-0.289072f,-0.910453f,
+-0.154509f,0.0f,-0.475528f,     -0.309017f,0.0f,-0.951057f,
+0.154508f,0.0f,-0.475528f,      0.309017f,0.0f,-0.951057f,
+-0.107853f,-0.5f,-0.331936f,    -0.295824f,-0.289072f,-0.910453f,
+-0.404509f,0.0f,-0.293893f,     -0.809017f,0.0f,-0.587785f,
+-0.282362f,-0.5f,-0.205148f,    -0.774478f,-0.289072f,-0.562691f,
+-0.5f,0.0f,0.0f,                -1.0f,0.0f,0.0f,
+-0.349018f,-0.5f,0.0f,          -0.957307f,-0.289072f,0.0f,
+-0.404508f,0.0f,0.293893f,      -0.809017f,0.0f,0.587785f,
+-0.282362f,-0.5f,0.205148f,     -0.774478f,-0.289072f,0.562691f,
+-0.154509f,0.0f,0.475528f,      -0.309017f,0.0f,0.951056f,
+-0.107853f,-0.5f,0.331936f,     -0.295824f,-0.289072f,0.910453f,
+0.154509f,0.0f,0.475528f,       0.309017f,0.0f,0.951056f,
+0.107853f,-0.5f,0.331936f,      0.295824f,-0.289072f,0.910453f,
+0.404509f,0.0f,0.293892f,       0.809017f,0.0f,0.587785f,
+0.282362f,-0.5f,0.205148f,      0.774478f,-0.289072f,0.562691f,
+0.282362f,0.5f,-0.205148f,      0.774478f,0.289072f,-0.562691f,
+0.349018f,0.5f,0.0f,            0.957307f,0.289072f,0.0f,
+0.107853f,0.5f,-0.331936f,      0.295824f,0.289072f,-0.910453f,
+-0.107853f,0.5f,-0.331936f,     -0.295824f,0.289072f,-0.910453f,
+0.107853f,0.5f,-0.331936f,      0.295824f,0.289072f,-0.910453f,
+-0.282362f,0.5f,-0.205148f,     -0.774478f,0.289072f,-0.562691f,
+-0.349018f,0.5f,0.0f,           -0.957307f,0.289072f,0.0f,
+-0.282362f,0.5f,0.205148f,      -0.774478f,0.289072f,0.562691f,
+-0.107853f,0.5f,0.331936f,      -0.295824f,0.289072f,0.910453f,
+0.107853f,0.5f,0.331936f,       0.295824f,0.289072f,0.910453f,
+0.282362f,0.5f,0.205148f,       0.774478f,0.289072f,0.562691f,
+};
+
+
+static unsigned short MyBarrelIdx[] = {
+0,1,2,0,3,1,0,4,5,0,6,4,0,7,6,0,8,7,0,9,8,0,10,9,
+0,11,10,0,2,11,12,13,14,12,14,15,12,16,17,12,17,18,
+12,18,19,12,19,20,12,20,21,12,21,22,12,22,23,12,23,13,
+24,25,26,24,27,25,27,28,25,27,29,28,30,31,32,30,33,31,
+33,34,31,33,35,34,35,36,34,35,37,36,37,38,36,37,39,38,
+39,40,38,39,41,40,41,42,40,41,43,42,43,44,42,43,45,44,
+45,26,44,45,24,26,26,46,47,26,25,46,25,48,46,25,28,48,
+32,49,50,32,31,49,31,51,49,31,34,51,34,52,51,34,36,52,
+36,53,52,36,38,53,38,54,53,38,40,54,40,55,54,40,42,55,
+42,56,55,42,44,56,44,47,56,44,26,47,
+};
 //J プロキシ
 //E Proxies
 PfxBroadphaseProxy proxies[NUM_RIGIDBODIES];
@@ -374,7 +450,7 @@ void physics_simulate()
 	
 	frame++;
 	
-	//if(frame%100 == 0) 
+	if(frame%100 == 0) 
 	{
 		float broadphaseTime = pc.getCountTime(0);
 		float collisionTime  = pc.getCountTime(2);
@@ -601,19 +677,47 @@ void createPyramid(const PfxVector3 &offsetPosition,int stackSize,const PfxVecto
 }
 
 
-void createTowerCircle(const PfxVector3 &offsetPosition,int stackSize,int rotSize,const PfxVector3 &boxSize)
-{
-	PfxFloat radius = 1.3f * rotSize * boxSize[0] / SCE_PFX_PI;
 
-	PfxBox box(boxSize);
+PfxShape createConvexShape()
+{
+	PfxCreateConvexMeshParam param;
+
+	param.verts = MyBarrelVtx;
+	param.numVerts = MyBarrelVtxCount;
+	param.vertexStrideBytes = sizeof(float)*6;
+
+	param.triangles = MyBarrelIdx;
+	param.numTriangles = MyBarrelIdxCount/3;
+	param.triangleStrideBytes = sizeof(unsigned short)*3;
+
+	PfxInt32 ret = pfxCreateConvexMesh(gConvex,param,2);
+	if(ret != SCE_PFX_OK) {
+		SCE_PFX_PRINTF("Can't create gConvex mesh.\n");
+	}
+	
+
 	PfxShape shape;
 	shape.reset();
-	shape.setBox(box);
+	shape.setConvexMesh(&gConvex);
 
 	PfxInplaceArray<btVector3,MAXSIZE> vertices;
-	getBoxVertices(box.m_half,vertices);
-	shape.m_convexPolyhedron = initializePolyhedralFeatures(vertices);
 
+	for (int i=0;i<gConvex.m_numVerts;i++)
+	{
+		vertices.push_back(gConvex.m_verts[i]);
+	}
+	
+	shape.m_convexPolyhedron = initializePolyhedralFeatures(vertices);
+	return shape;
+}
+
+void createTowerCircle(const PfxVector3 &offsetPosition,int stackSize,int rotSize,const PfxVector3 &boxSize)
+{
+	PfxFloat radius = 1.f * rotSize * boxSize[0] / SCE_PFX_PI;
+
+	PfxShape shape;
+
+	shape = createConvexShape();
 	// create active boxes
 	PfxQuat rotY = PfxQuat::identity();
 	PfxFloat posY = boxSize[1];
@@ -631,40 +735,14 @@ void createTowerCircle(const PfxVector3 &offsetPosition,int stackSize,int rotSiz
 }
 
 
+
 void createScenePrimitives()
 {
 
 	// convex mesh
 	{
-		PfxCreateConvexMeshParam param;
-
-		param.verts = BarrelVtx;
-		param.numVerts = BarrelVtxCount;
-		param.vertexStrideBytes = sizeof(float)*6;
-
-		param.triangles = BarrelIdx;
-		param.numTriangles = BarrelIdxCount/3;
-		param.triangleStrideBytes = sizeof(unsigned short)*3;
-
-		PfxInt32 ret = pfxCreateConvexMesh(gConvex,param);
-		if(ret != SCE_PFX_OK) {
-			SCE_PFX_PRINTF("Can't create gConvex mesh.\n");
-		}
-		
+		PfxShape shape = createConvexShape();
 		int id = numRigidBodies++;
-		PfxShape shape;
-		shape.reset();
-		shape.setConvexMesh(&gConvex);
-		
-		PfxInplaceArray<btVector3,MAXSIZE> vertices;
-
-		for (int i=0;i<gConvex.m_numVerts;i++)
-		{
-			vertices.push_back(gConvex.m_verts[i]);
-		}
-		
-		shape.m_convexPolyhedron = initializePolyhedralFeatures(vertices);
-
 		collidables[id].reset();
 		collidables[id].addShape(shape);
 		collidables[id].finish();
@@ -726,7 +804,8 @@ void createSceneJoints()
 
 void createSceneStacking()
 {
-	createTowerCircle(PfxVector3(0.0f,1.0f,0.0f),8,24,PfxVector3(1));
+//	createTowerCircle(PfxVector3(0.0f,1.0f,0.0f),3,8,PfxVector3(1));
+		createTowerCircle(PfxVector3(0.0f,1.0f,0.0f),8,24,PfxVector3(1));
 //	createTowerCircle(PfxVector3(0.0f,1.0f,0.0f),2,1,PfxVector3(1));
 /*
 	static float ang = 0.3f;
@@ -854,22 +933,27 @@ void physics_create_scene(int sceneId)
 
 pfx_detect_collision_func orgFunc;
 
+
+#include "../../../src/bullet_physics/util/btQuickProf.h"
+
 void myCustomCollisionDummy(
 				PfxContactCache &contacts,
 				const PfxShape &shapeA,const PfxTransform3 &offsetTransformA,const PfxTransform3 &worldTransformA,int shapeIdA,
 				const PfxShape &shapeB,const PfxTransform3 &offsetTransformB,const PfxTransform3 &worldTransformB,int shapeIdB,
 				float contactThreshold)
 {
+	BT_PROFILE("myCustomCollisionDummy");
+
 	(void)contacts;
 	(void)shapeA,(void)offsetTransformA,(void)worldTransformA,(void)shapeIdA;
 	(void)shapeB,(void)offsetTransformB,(void)worldTransformB,(void)shapeIdB;
 	(void)contactThreshold;
 
 	bool foundSep  = false;
-btVector3 sep;
+	btVector3 sep;
 	PfxContactCache copyContacts;
 
-	if(0)//(shapeA.getType() == kPfxShapeBox) && (shapeB.getType() == kPfxShapeBox))
+	if((shapeA.getType() == sce::PhysicsEffects::kPfxShapeBox) && (shapeB.getType() == sce::PhysicsEffects::kPfxShapeBox))
 	{
 		PfxBox boxA = shapeA.getBox();
 		PfxBox boxB = shapeB.getBox();
@@ -897,6 +981,27 @@ btVector3 sep;
 	}
 	*/
 
+	if((shapeA.getType() == sce::PhysicsEffects::kPfxShapeConvexMesh) && (shapeB.getType() == sce::PhysicsEffects::kPfxShapeConvexMesh))
+	{
+		BT_PROFILE("gjk getClosestPoints");
+
+		const PfxConvexMesh* boxA = shapeA.getConvexMesh();
+		const PfxConvexMesh* boxB = shapeB.getConvexMesh();
+		PfxFloat d = SCE_PFX_FLT_MAX;
+		PfxVector3 nml;
+		PfxPoint3 pA,pB;
+		sce::PhysicsEffects::PfxGjkSolver gjk;
+
+		gjk.setup((void*)boxA,(void*)boxB,pfxGetSupportVertexConvex,pfxGetSupportVertexConvex);
+		d = gjk.collide(nml,pA,pB,worldTransformA,worldTransformB,SCE_PFX_FLT_MAX);
+		if(d <= 0.f) {
+			copyContacts.addContactPoint(d,nml,offsetTransformA*pA,offsetTransformB*pB,PfxSubData());
+			foundSep  = true;
+			sep = nml;
+		}
+
+	} 
+
 
 
 
@@ -907,10 +1012,14 @@ btVector3 sep;
 		btConvexPolyhedron* polB = (btConvexPolyhedron*)shapeB.m_convexPolyhedron;
 
 		if (!foundSep)
+		{
+			BT_PROFILE("findSeparatingAxis");
 			foundSep = btDefaultPolyClipper::findSeparatingAxis(*polA, *polB, worldTransformA,worldTransformB, sep);
-
+		}
 		if (foundSep)
 		{
+			BT_PROFILE("clipHullAgainstHull");
+
 //			SCE_PFX_PRINTF("found sep!\n");
 
 			float minDist = -1e30f;
