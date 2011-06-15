@@ -21,9 +21,9 @@ subject to the following restrictions:
 
 #include "UnitTests.h"
 #include "RadixSortBenchmark.h"
+#include "LaunchOverheadBenchmark.h"
 
 KernelManager* KernelManager::s_kManager = NULL;
-
 
 #undef NUM_TESTS
 
@@ -83,9 +83,26 @@ int main()
 	}
 #endif //ADL_ENABLE_DX11
 
-//	radixSortBenchmark<TYPE_DX11>();
+	if(0)
+	{
+		launchOverheadBenchmark();
+	}
 
-	runAllTest();
+#if defined(ADL_ENABLE_DX11)
+	if(0)
+	{
+		radixSortBenchmark<TYPE_DX11>();
+	}
+#endif
+	if(0)
+	{
+		radixSortBenchmark<TYPE_CL>();
+	}
+
+	if(1)
+	{
+		runAllTest();
+	}
 }
 
 

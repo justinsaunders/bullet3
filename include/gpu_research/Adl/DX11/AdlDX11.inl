@@ -18,8 +18,10 @@ subject to the following restrictions:
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dcompiler.h>
+#include <DXGI.h>
 #pragma comment(lib,"d3dx11.lib")
 #pragma comment(lib,"d3d11.lib")
+#pragma comment(lib,"DXGI.lib")
 
 
 #define u32 unsigned int
@@ -118,14 +120,34 @@ typedef HRESULT (WINAPI * LPD3D11CREATEDEVICE)( IDXGIAdapter*, D3D_DRIVER_TYPE, 
 	_DynamicD3D11CreateDevice = ( LPD3D11CREATEDEVICE )GetProcAddress( moduleD3D11, "D3D11CreateDevice" );
 
 	D3D_DRIVER_TYPE type = D3D_DRIVER_TYPE_HARDWARE;
-//	if( driverType == DeviceUtilsDX11::DRIVER_REFERENCE )
-//	{
-//		type = D3D_DRIVER_TYPE_REFERENCE;
-//	}
-
+	//	http://msdn.microsoft.com/en-us/library/ff476082(v=VS.85).aspx
+	//	If you set the pAdapter parameter to a non-NULL value, you must also set the DriverType parameter to the D3D_DRIVER_TYPE_UNKNOWN value. If you set the pAdapter parameter to a non-NULL value and the DriverType parameter to the D3D_DRIVER_TYPE_HARDWARE value, D3D11CreateDevice returns an HRESULT of E_INVALIDARG.
+	type = D3D_DRIVER_TYPE_UNKNOWN;
+/*
 	// Create a hardware Direct3D 11 device
 	hr = _DynamicD3D11CreateDevice( NULL, 
 		type, NULL, createDeviceFlg,
+		fl, _countof(fl), D3D11_SDK_VERSION, &deviceData->m_device, NULL, &deviceData->m_context );
+*/
+	IDXGIAdapter* adapter = NULL;
+	{//	get adapter of the index
+		IDXGIFactory* factory = NULL;
+		int targetAdapterIdx = cfg.m_deviceIdx;//min( cfg.m_deviceIdx, getNDevices()-1 );
+		CreateDXGIFactory( __uuidof(IDXGIFactory), (void**)&factory );
+
+		u32 i = 0;
+		while( factory->EnumAdapters( i, &adapter ) != DXGI_ERROR_NOT_FOUND )
+		{
+			if( i== targetAdapterIdx ) break;
+			i++;
+		}
+		factory->Release();
+	}
+
+	// Create a hardware Direct3D 11 device
+	hr = D3D11CreateDevice( adapter, 
+		type, 
+		NULL, createDeviceFlg,
 		fl, _countof(fl), D3D11_SDK_VERSION, &deviceData->m_device, NULL, &deviceData->m_context );
 
 	ADLASSERT( hr == S_OK );
@@ -156,7 +178,7 @@ void DeviceDX11::allocate(Buffer<T>* buf, int nElems, BufferBase::BufferType typ
 	ADLASSERT( type != BufferBase::BUFFER_ZERO_COPY );
 
 	DeviceDX11* deviceData = this;
-	buf->m_deviceData = deviceData;
+	buf->m_device = deviceData;
 	buf->m_size = nElems;
 	BufferDX11<T>* dBuf = (BufferDX11<T>*)buf;
 
@@ -323,17 +345,17 @@ void DeviceDX11::deallocate(Buffer<T>* buf)
 		dBuf->getSRV()->Release();
 		dBuf->m_srv = NULL;
 	}
-	buf->m_deviceData = 0;
+	buf->m_device = 0;
 }
 
 template<typename T>
 void DeviceDX11::copy(Buffer<T>* dst, const Buffer<T>* src, int nElems, int offsetNElems)
 {
-	if( dst.m_deviceData->m_type == TYPE_DX11 || src.m_deviceData->m_type == TYPE_HOST )
+	if( dst.m_device->m_type == TYPE_DX11 || src.m_device->m_type == TYPE_HOST )
 	{
 		copy( dst, src.m_ptr, nElems, offsetNElems );
 	}
-	else if( src.m_deviceData->m_type == TYPE_DX11 || dst.m_deviceData->m_type == TYPE_HOST )
+	else if( src.m_device->m_type == TYPE_DX11 || dst.m_device->m_type == TYPE_HOST )
 	{
 		copy( dst->m_ptr, src, nElems, offsetNElems );
 	}

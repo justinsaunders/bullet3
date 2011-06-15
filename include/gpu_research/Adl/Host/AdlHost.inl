@@ -60,7 +60,7 @@ void DeviceHost::release()
 template<typename T>
 void DeviceHost::allocate(Buffer<T>* buf, int nElems, BufferBase::BufferType type)
 {
-	buf->m_deviceData = this;
+	buf->m_device = this;
 
 	if( type == BufferBase::BUFFER_CONST ) return;
 

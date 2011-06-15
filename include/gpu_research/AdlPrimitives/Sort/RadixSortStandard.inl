@@ -22,7 +22,6 @@ subject to the following restrictions:
 #include <AdlPrimitives/Sort/RadixSortStandardKernelsCL.h>
 #include <AdlPrimitives/Sort/RadixSortStandardKernelsDX11.h>
 
-
 template<DeviceType type>
 class RadixSortStandard : public RadixSortBase
 {
@@ -84,7 +83,10 @@ typename RadixSortStandard<type>::Data* RadixSortStandard<type>::allocate(const 
 	data->m_scatterKernel = KernelManager::query( deviceData, PATH, KERNEL1, 0, src[type]);
 	data->m_copyKernel = KernelManager::query( deviceData, PATH, KERNEL2, 0, src[type]);
 
-	data->m_scanData = PrefixScan<type>::allocate( deviceData, maxSize );
+	//	is this correct?
+	data->m_scanData = PrefixScan<type>::allocate( deviceData, maxNumGroups*(1<<BITS_PER_PASS) );
+//	data->m_scanData = PrefixScan<type>::allocate( deviceData, maxSize );
+
 
 	data->m_workBuffer0 = new Buffer<u32>( deviceData, maxNumGroups*(1<<BITS_PER_PASS) );
 	data->m_workBuffer1 = new Buffer<u32>( deviceData, maxNumGroups*(1<<BITS_PER_PASS) );

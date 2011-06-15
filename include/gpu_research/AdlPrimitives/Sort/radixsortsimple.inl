@@ -18,8 +18,8 @@ subject to the following restrictions:
 #define KERNEL0 "LocalCountKernel"
 #define KERNEL1 "ScatterKernel"
 
-#include <AdlPrimitives/Sort/RadixSortSimpleKernelsCL.h>
-#include <AdlPrimitives/Sort/RadixSortSimpleKernelsDX11.h>
+#include <AdlPrimitives/Sort/RadixSortSimpleCL.h>
+#include <AdlPrimitives/Sort/RadixSortSimpleDX11.h>
 
 template<DeviceType type>
 class RadixSortSimple : public RadixSortBase

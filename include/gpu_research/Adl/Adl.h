@@ -80,10 +80,19 @@ class DeviceUtils
 				DEVICE_CPU,
 			};
 
-			Config() : m_type(DEVICE_GPU), m_deviceIdx(0){}
+			//	for CL
+			enum DeviceVendor
+			{
+				VD_AMD,
+				VD_INTEL,
+				VD_NV,
+			};
+
+			Config() : m_type(DEVICE_GPU), m_deviceIdx(0), m_vendor(VD_AMD){}
 
 			DeviceType m_type;
 			int m_deviceIdx;
+			DeviceVendor m_vendor;
 		};
 
 		__inline
@@ -128,28 +137,33 @@ struct Buffer : public BufferBase
 	__inline
 	Buffer();
 	__inline
-	Buffer(const Device* deviceData, int nElems, BufferType type = BUFFER );
+	Buffer(const Device* device, int nElems, BufferType type = BUFFER );
 	__inline
 	virtual ~Buffer();
 	
 	__inline
-	void allocate(const Device* deviceData, int nElems, BufferType type = BUFFER );
+	void setRawPtr( const Device* device, T* ptr, int size, BufferType type = BUFFER );
+	__inline
+	void allocate(const Device* device, int nElems, BufferType type = BUFFER );
 	__inline
 	void write(T* hostPtr, int nElems, int dstOffsetNElems = 0);
 	__inline
 	void read(T* hostPtr, int nElems, int srcOffsetNElems = 0) const;
 	__inline
 	Buffer<T>& operator = (const HostBuffer<T>& host);
+	__inline
+	int getSize() { return m_size; }
 
-	DeviceType getType() const { ADLASSERT( m_deviceData ); return m_deviceData->m_type; }
+	DeviceType getType() const { ADLASSERT( m_device ); return m_device->m_type; }
 
 
-	const Device* m_deviceData;
+	const Device* m_device;
 	int m_size;
 	T* m_ptr;
 	//	for DX11
 	void* m_uav;
 	void* m_srv;
+	bool m_allocated;	//	todo. move this to a bit
 };
 
 //==========================
@@ -163,8 +177,9 @@ struct HostBuffer : public Buffer<T>
 	__inline
 	HostBuffer():Buffer<T>(){}
 	__inline
-	HostBuffer(const Device* deviceData, int nElems, BufferType type = BUFFER ) : Buffer<T>(deviceData, nElems, type) {}
+	HostBuffer(const Device* device, int nElems, BufferType type = BUFFER ) : Buffer<T>(device, nElems, type) {}
 //	HostBuffer(const Device* deviceData, T* rawPtr, int nElems);
+
 
 	__inline
 	T& operator[](int idx);

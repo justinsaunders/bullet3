@@ -80,9 +80,9 @@ void DeviceUtils::waitForCompletion( const Device* deviceData )
 #define SELECT_DEVICEDATA( type, func ) \
 	switch( type ) \
 	{ \
-	case TYPE_CL: ((DeviceCL*)m_deviceData)->func; break; \
-	case TYPE_DX11: ((DeviceDX11*)m_deviceData)->func; break; \
-	case TYPE_HOST: ((DeviceHost*)m_deviceData)->func; break; \
+	case TYPE_CL: ((DeviceCL*)m_device)->func; break; \
+	case TYPE_DX11: ((DeviceDX11*)m_device)->func; break; \
+	case TYPE_HOST: ((DeviceHost*)m_device)->func; break; \
 	default: ADLASSERT(0); break; \
 	}
 
@@ -98,8 +98,8 @@ void DeviceUtils::waitForCompletion( const Device* deviceData )
 #define SELECT_DEVICEDATA( type, func ) \
 	switch( type ) \
 	{ \
-	case TYPE_CL: ((DeviceCL*)m_deviceData)->func; break; \
-	case TYPE_HOST: ((DeviceHost*)m_deviceData)->func; break; \
+	case TYPE_CL: ((DeviceCL*)m_device)->func; break; \
+	case TYPE_HOST: ((DeviceHost*)m_device)->func; break; \
 	default: ADLASSERT(0); break; \
 	}
 
@@ -115,56 +115,74 @@ void DeviceUtils::waitForCompletion( const Device* deviceData )
 template<typename T>
 Buffer<T>::Buffer()
 {
-	m_deviceData = 0;
+	m_device = 0;
 	m_size = 0;
 	m_ptr = 0;
 
 	m_uav = 0;
 	m_srv = 0;
+
+	m_allocated = false;
 }
 
 template<typename T>
 Buffer<T>::Buffer(const Device* deviceData, int nElems, BufferType type )
 {
-	m_deviceData = 0;
+	m_device = 0;
 	allocate( deviceData, nElems, type );
 }
 
 template<typename T>
 Buffer<T>::~Buffer()
 {
-	if( m_deviceData )
-		SELECT_DEVICEDATA( m_deviceData->m_type, deallocate( this ) );
+	if( m_allocated )
+	{
+		if( m_device )
+			SELECT_DEVICEDATA( m_device->m_type, deallocate( this ) );
+	}
 
-	m_deviceData = 0;
+	m_device = 0;
 	m_ptr = 0;
 	m_size = 0;
 }
 
 template<typename T>
+void Buffer<T>::setRawPtr( const Device* device, T* ptr, int size, BufferType type )
+{
+	ADLASSERT( m_device == 0 );
+	ADLASSERT( type == BUFFER );	//	todo. implement
+	ADLASSERT( device->m_type != TYPE_DX11 );	//	todo. implement set srv, uav
+
+	m_device = device;
+	m_ptr = ptr;
+	m_size = size;
+}
+
+template<typename T>
 void Buffer<T>::allocate(const Device* deviceData, int nElems, BufferType type )
 {
-	ADLASSERT( m_deviceData == 0 );
-	m_deviceData = deviceData;
+	ADLASSERT( m_device == 0 );
+	m_device = deviceData;
 	m_size = 0;
 	m_ptr = 0;
 
 	m_uav = 0;
 	m_srv = 0;
 
-	SELECT_DEVICEDATA( m_deviceData->m_type, allocate( this, nElems, type ) );
+	SELECT_DEVICEDATA( m_device->m_type, allocate( this, nElems, type ) );
+	m_allocated = true;
 }
 
 template<typename T>
 void Buffer<T>::write(T* hostPtr, int nElems, int offsetNElems)
 {
-	SELECT_DEVICEDATA( m_deviceData->m_type, copy(this, hostPtr, nElems, offsetNElems) );
+	SELECT_DEVICEDATA( m_device->m_type, copy(this, hostPtr, nElems, offsetNElems) );
 }
 
 template<typename T>
 void Buffer<T>::read(T* hostPtr, int nElems, int offsetNElems) const
 {
-	SELECT_DEVICEDATA( m_deviceData->m_type, copy(hostPtr,this, nElems, offsetNElems) );
+	SELECT_DEVICEDATA( m_device->m_type, copy(hostPtr,this, nElems, offsetNElems) );
 }
 
 template<typename T>
@@ -172,7 +190,7 @@ Buffer<T>& Buffer<T>::operator=( const HostBuffer<T>& host )
 {
 	ADLASSERT( host.m_size <= m_size );
 
-	SELECT_DEVICEDATA( m_deviceData->m_type, copy(this, host.m_ptr, host.m_size ) );
+	SELECT_DEVICEDATA( m_device->m_type, copy(this, host.m_ptr, host.m_size ) );
 
 	return *this;
 }
@@ -196,7 +214,7 @@ HostBuffer<T>& HostBuffer<T>::operator = ( const Buffer<T>& device )
 {
 	ADLASSERT( device.m_size <= m_size );
 
-	SELECT_DEVICEDATA1( device.m_deviceData, copy( m_ptr, &device, device.m_size ) );
+	SELECT_DEVICEDATA1( device.m_device, copy( m_ptr, &device, device.m_size ) );
 
 	return *this;
 }

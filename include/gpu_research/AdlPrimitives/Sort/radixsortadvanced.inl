@@ -59,11 +59,7 @@ typename RadixSortAdvanced<type>::Data* RadixSortAdvanced<type>::allocate(const 
 {
 	ADLASSERT( type == deviceData->m_type );
 
-
-	const char* src[] = { 
-0, //#include "../../AdlPrimitives/Sort/RadixSortStandardKernels.cl",
-0,//#include "../../AdlPrimitives/Sort/RadixSortStandardKernels.hlsl",
-		0 };
+	const char* src[] = { 0, 0, 0 };
 
 	Data* data = new Data;
 	data->m_option = option;

@@ -51,6 +51,9 @@ T nextPowerOf2(T n)
 	return n+1;
 }
 
+typedef unsigned int u32;
+typedef unsigned short u16;
+typedef unsigned char u8;
 
 _MEM_CLASSALIGN16
 struct float4
@@ -87,6 +90,23 @@ struct int4
 	};
 };
 
+_MEM_CLASSALIGN16
+struct uint4
+{
+	_MEM_ALIGNED_ALLOCATOR16;
+	union
+	{
+		struct
+		{
+			u32 x,y,z,w;
+		};
+		struct
+		{
+			u32 s[4];
+		};
+	};
+};
+
 struct int2
 {
 	union
@@ -117,10 +137,6 @@ struct float2
 	};
 };
 
-
-typedef unsigned int u32;
-typedef unsigned short u16;
-typedef unsigned char u8;
 
 
 #include <AdlPrimitives/Math/Float4.inl>

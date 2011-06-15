@@ -75,15 +75,64 @@ void run( Device* device, int minSize = 512, int maxSize = 64*1024 )//, int incr
 }
 
 template<DeviceType TYPE>
+void run32( Device* device, int size )
+{
+	
+	ADLASSERT( TYPE == device->m_type );
+
+	Stopwatch sw( device );
+
+	RadixSort32<TYPE>::Data* data = RadixSort32<TYPE>::allocate( device, size );
+	Copy<TYPE>::Data* copyData = Copy<TYPE>::allocate( device );
+
+	Buffer<u32> inputMaster( device, size );
+	Buffer<u32> input( device, size );
+	Buffer<u32> output( device, size );
+	{
+		u32* host = new u32[size];
+		for(int i=0; i<size; i++) host[i] = getRandom(0u, 0xffffffffu);
+		inputMaster.write( host, size );
+		DeviceUtils::waitForCompletion( device );
+		delete [] host;
+	}
+
+	int nIter = 100;
+	sw.start();
+	for(int iter=0; iter<nIter; iter++)
+	{
+//		Copy<TYPE>::execute( copyData, (Buffer<float>&)input, (Buffer<float>&)inputMaster, size );
+//		RadixSort32<TYPE>::execute( data, input, size );
+		RadixSort32<TYPE>::execute( data, input, output, size );
+	}
+	sw.stop();
+
+	{
+		float tInS = sw.getMs()/1000.f/(float)nIter;
+		float mKeysPerS = size/1000.f/1000.f/tInS;
+		printf("%3.2fMKeys:	%3.2fMKeys/s\n", size/1000.f, mKeysPerS);
+	}
+
+	RadixSort32<TYPE>::deallocate( data );
+	Copy<TYPE>::deallocate( copyData );
+}
+
+template<DeviceType TYPE>
 void radixSortBenchmark()
 {
+	AdlAllocate();
+
 	Device* device;
 	{
 		DeviceUtils::Config cfg;
 		device = DeviceUtils::allocate( TYPE, cfg );
 	}
 
-	run<TYPE>( device, 512, 1024*128*4 );
+	run32<TYPE>( device, 256*1024*8*2 );
+//	run32<TYPE>( device, 256*20*6 );
+
+//	run<TYPE>( device, 512, 1024*128*4 );
 
 	DeviceUtils::deallocate( device );
+
+	AdlDeallocate();
 }

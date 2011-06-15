@@ -98,7 +98,7 @@ float4 operator-(const float4& a)
 __inline
 float4 operator*(const float4& a, const float4& b)
 {
-	ADLASSERT((u32(&a) & 0xf) == 0);
+//	ADLASSERT((u32(&a) & 0xf) == 0);
 
 	float4 out;
 	out.s[0] = a.s[0]*b.s[0];

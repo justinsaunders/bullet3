@@ -5,6 +5,8 @@
 
 		project "gpu_benchmark_radixsort"
 
+		initOpenCL()
+		
 		language "C++"
 				
 		kind "ConsoleApp"

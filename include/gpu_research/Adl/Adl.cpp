@@ -14,9 +14,6 @@ subject to the following restrictions:
 */
 //Author Takahiro Harada
 
-//those are defined in the build system
-//#define ADL_ENABLE_CL
-//#define ADL_ENABLE_DX11
+#include <Adl/Adl.h>
 
-#define ADL_LOAD_KERNEL_FROM_STRING
-//#define ADL_DUMP_DX11_ERROR
+//KernelManager* KernelManager::s_kManager = NULL;

@@ -41,16 +41,68 @@ solution "0MySolution"
     trigger     = "no-capi",
     description = "Disable C-API and its demos"
   } 
-  
 
+	function findDirectX11()
+		local dx11path = os.getenv("DXSDK_DIR")
+		if (dx11path) then
+			local filepath = string.format("%s%s",dx11path,"Include/D3D11.h")
+			headerdx11 = io.open(filepath, "r")
+			if (headerdx11) then
+				 printf("Found DX11: '%s'", filepath)
+				return true
+			end
+		end
+		return false
+	end
+
+	function initDirectX11()
+		configuration {}
+		
+		local dx11path = os.getenv("DXSDK_DIR")
+
+			defines { "ADL_ENABLE_DX11"}
+
+			includedirs {"$(DXSDK_DIR)/include"}
+		
+			configuration "x32"
+				libdirs {"$(DXSDK_DIR)/Lib/x86"}
+			configuration "x64"
+				libdirs {"$(DXSDK_DIR)/Lib/x64"}
+			configuration {}
+			links {"d3dcompiler",
+						"dxerr",
+						"dxguid",
+						"d3dx9",
+						"d3d9",
+						"winmm",
+						"comctl32",
+						"d3dx11"
+			}
+			return true
+		
+	end
+	
+	
 	function findOpenCL()
+		local amdopenclpath = os.getenv("AMDAPPSDKROOT")
+		if (amdopenclpath) then
+			return true
+		end
+		local nvidiaopenclpath = os.getenv("CUDA_PATH")
+		if (nvidiaopenclpath) then
+			return true
+		end
+		return false
+	end
+			
+	function initOpenCL()
 	-- todo: add Apple and Intel OpenCL environment vars
 	-- todo: allow multiple SDKs
 	
 		configuration {}
 		local amdopenclpath = os.getenv("AMDAPPSDKROOT")
 		if (amdopenclpath) then
-			defines { "ADL_ENABLE_CL" }
+			defines { "ADL_ENABLE_CL" , "CL_PLATFORM_AMD"}
 			includedirs {
 				"$(AMDAPPSDKROOT)/include"				
 			}
@@ -59,13 +111,15 @@ solution "0MySolution"
 			configuration "x64"
 				libdirs {"$(AMDAPPSDKROOT)/lib/x86_64"}
 			configuration {}
+	
+			links {"OpenCL"}
 			return true
 		end
 
 		configuration {}
 		local nvidiaopenclpath = os.getenv("CUDA_PATH")
 		if (nvidiaopenclpath) then
-			defines { "ADL_ENABLE_CL" }
+			defines { "ADL_ENABLE_CL" , "CL_PLATFORM_NVIDIA"}
 			includedirs {
 				"$(CUDA_PATH)/include"				
 			}
@@ -74,6 +128,9 @@ solution "0MySolution"
 			configuration "x64"
 				libdirs {"$(CUDA_PATH)/lib/x64"}
 			configuration {}
+
+			links {"OpenCL"}
+
 			return true
 		end
 
@@ -81,7 +138,6 @@ solution "0MySolution"
 
 		return false
 	end
-
 
 	language "C++"
 	location "build"

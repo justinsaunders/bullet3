@@ -107,8 +107,10 @@ void DeviceCL::initialize(const Config& cfg)
 			status = clGetPlatformIDs(nPlatforms, pIdx, NULL);
 			ADLASSERT( status == CL_SUCCESS );
 
-			cl_uint nvIdx = -1;
 			cl_uint atiIdx = -1;
+			cl_uint intelIdx = -1;
+			cl_uint nvIdx = -1;
+
 			for(cl_uint i=0; i<nPlatforms; i++)
 			{
 				char buff[512];
@@ -117,16 +119,42 @@ void DeviceCL::initialize(const Config& cfg)
 
 				if( strcmp( buff, "NVIDIA Corporation" )==0 ) nvIdx = i;
 				if( strcmp( buff, "Advanced Micro Devices, Inc." )==0 ) atiIdx = i;
+				if( strcmp( buff, "Intel Corporation" )==0 ) intelIdx = i;
 			}
 
 			if( deviceType == CL_DEVICE_TYPE_GPU )
 			{
-				if( nvIdx != -1 ) platform = pIdx[nvIdx];
-				else platform = pIdx[atiIdx];
+				switch( cfg.m_vendor )
+				{
+				case DeviceUtils::Config::VD_AMD:
+					ADLASSERT(atiIdx != -1 );
+					platform = pIdx[atiIdx];
+					break;
+				case DeviceUtils::Config::VD_NV:
+					ADLASSERT(nvIdx != -1 );
+					platform = pIdx[nvIdx];
+					break;
+				default:
+					ADLASSERT(0);
+					break;
+				};
 			}
 			else if( deviceType == CL_DEVICE_TYPE_CPU )
 			{
-				platform = pIdx[atiIdx];
+				switch( cfg.m_vendor )
+				{
+				case DeviceUtils::Config::VD_AMD:
+					ADLASSERT(atiIdx != -1 );
+					platform = pIdx[atiIdx];
+					break;
+				case DeviceUtils::Config::VD_INTEL:
+					ADLASSERT(intelIdx != -1 );
+					platform = pIdx[intelIdx];
+					break;
+				default:
+					ADLASSERT(0);
+					break;
+				};
 			}
 		}
 
@@ -183,7 +211,7 @@ void DeviceCL::release()
 template<typename T>
 void DeviceCL::allocate(Buffer<T>* buf, int nElems, BufferBase::BufferType type)
 {
-	buf->m_deviceData = this;
+	buf->m_device = this;
 	buf->m_size = nElems;
 	buf->m_ptr = 0;
 
@@ -202,7 +230,7 @@ template<typename T>
 void DeviceCL::deallocate(Buffer<T>* buf)
 {
 	if( buf->m_ptr ) clReleaseMemObject( (cl_mem)buf->m_ptr );
-	buf->m_deviceData = 0;
+	buf->m_device = 0;
 	buf->m_size = 0;
 	buf->m_ptr = 0;
 }
@@ -210,11 +238,11 @@ void DeviceCL::deallocate(Buffer<T>* buf)
 template<typename T>
 void DeviceCL::copy(Buffer<T>* dst, const Buffer<T>* src, int nElems, int offsetNElems )
 {
-	if( dst.m_deviceData->m_type == TYPE_CL || src.m_deviceData->m_type == TYPE_HOST )
+	if( dst.m_device->m_type == TYPE_CL || src.m_device->m_type == TYPE_HOST )
 	{
 		copy( dst, src.m_ptr, nElems, offsetNElems );
 	}
-	else if( src.m_deviceData->m_type == TYPE_CL || dst.m_deviceData->m_type == TYPE_HOST )
+	else if( src.m_device->m_type == TYPE_CL || dst.m_device->m_type == TYPE_HOST )
 	{
 		copy( dst->m_ptr, src, nElems, offsetNElems );
 	}

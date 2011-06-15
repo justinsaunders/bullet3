@@ -16,8 +16,10 @@ subject to the following restrictions:
 
 #include <AdlPrimitives/Scan/PrefixScan.h>
 #include <AdlPrimitives/Sort/RadixSort.h>
+#include <AdlPrimitives/Sort/RadixSort32.h>
 #include <AdlPrimitives/Search/BoundSearch.h>
 #include <AdlPrimitives/Fill/Fill.h>
+#include <AdlPrimitives/Copy/Copy.h>
 
 
 #define NUM_TESTS 10
@@ -415,6 +417,208 @@ void fillInt4Test( Device* deviceGPU, Device* deviceHost )
 }
 
 
+template<DeviceType type, CopyBase::Option OPTION>
+bool CopyF4Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	ADLASSERT( type == deviceGPU->m_type );
+
+	int maxSize = 1024*256;
+
+	HostBuffer<float4> buf0( deviceHost, maxSize );
+	HostBuffer<float4> buf1( deviceHost, maxSize );
+	Buffer<float4> buf2( deviceGPU, maxSize );
+	Buffer<float4> buf3( deviceGPU, maxSize );
+	HostBuffer<float4> devResult( deviceHost, maxSize );
+
+	Copy<TYPE_HOST>::Data* data0 = Copy<TYPE_HOST>::allocate( deviceHost );
+	Copy<type>::Data* data1 = Copy<type>::allocate( deviceGPU );
+
+	int dx = maxSize/NUM_TESTS;
+	for(int iter=0; iter<NUM_TESTS; iter++)
+	{
+		int size = min2( 128+dx*iter, maxSize-4 );
+		size = NEXTMULTIPLEOF( size, 4 );
+		float r = 10000.f;
+		for(int i=0; i<size; i++) buf0[i] = make_float4( getRandom( -r, r ), getRandom( -r, r ), getRandom( -r, r ), getRandom( -r, r ) );
+		buf2.write( buf0.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+
+		Copy<TYPE_HOST>::execute( data0, buf1, buf0, size, OPTION );
+		Copy<type>::execute( data1, buf3, buf2, size, OPTION );
+
+		buf3.read( devResult.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+		for(int i=0; i<size; i++)
+		{
+			TEST_ASSERT( buf1[i] == devResult[i] );
+			TEST_ASSERT( buf0[i] == devResult[i] );
+		}
+	}
+
+	Copy<TYPE_HOST>::deallocate( data0 );
+	Copy<type>::deallocate( data1 );
+
+	return g_testFailed;
+}
+
+template<DeviceType type>
+void Copy1F4Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	g_testFailed = CopyF4Test<type, CopyBase::PER_WI_1>( deviceGPU, deviceHost );
+	TEST_REPORT( "Copy1F4Test" );
+}
+
+template<DeviceType type>
+void Copy2F4Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	g_testFailed = CopyF4Test<type, CopyBase::PER_WI_2>( deviceGPU, deviceHost );
+	TEST_REPORT( "Copy2F4Test" );
+}
+
+template<DeviceType type>
+void Copy4F4Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	g_testFailed = CopyF4Test<type, CopyBase::PER_WI_4>( deviceGPU, deviceHost );
+	TEST_REPORT( "Copy4F4Test" );
+}
+
+
+template<DeviceType type>
+void CopyF1Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	ADLASSERT( type == deviceGPU->m_type );
+
+	int maxSize = 1024*256;
+
+	HostBuffer<float> buf0( deviceHost, maxSize );
+	HostBuffer<float> buf1( deviceHost, maxSize );
+	Buffer<float> buf2( deviceGPU, maxSize );
+	Buffer<float> buf3( deviceGPU, maxSize );
+	HostBuffer<float> devResult( deviceHost, maxSize );
+
+	Copy<TYPE_HOST>::Data* data0 = Copy<TYPE_HOST>::allocate( deviceHost );
+	Copy<type>::Data* data1 = Copy<type>::allocate( deviceGPU );
+
+	int dx = maxSize/NUM_TESTS;
+	for(int iter=0; iter<NUM_TESTS; iter++)
+	{
+		int size = min2( 128+dx*iter, maxSize-4 );
+		size = NEXTMULTIPLEOF( size, 4 );
+		float r = 10000.f;
+		for(int i=0; i<size; i++) buf0[i] = getRandom( -r, r );
+		buf2.write( buf0.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+
+		Copy<TYPE_HOST>::execute( data0, buf1, buf0, size );
+		Copy<type>::execute( data1, buf3, buf2, size );
+
+		buf3.read( devResult.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+		for(int i=0; i<size; i++)
+		{
+			TEST_ASSERT( buf1[i] == devResult[i] );
+			TEST_ASSERT( buf0[i] == devResult[i] );
+		}
+	}
+
+	Copy<TYPE_HOST>::deallocate( data0 );
+	Copy<type>::deallocate( data1 );
+
+	TEST_REPORT( "CopyF1Test" );
+}
+
+template<DeviceType type>
+void CopyF2Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	ADLASSERT( type == deviceGPU->m_type );
+
+	int maxSize = 1024*256;
+
+	HostBuffer<float2> buf0( deviceHost, maxSize );
+	HostBuffer<float2> buf1( deviceHost, maxSize );
+	Buffer<float2> buf2( deviceGPU, maxSize );
+	Buffer<float2> buf3( deviceGPU, maxSize );
+	HostBuffer<float2> devResult( deviceHost, maxSize );
+
+	Copy<TYPE_HOST>::Data* data0 = Copy<TYPE_HOST>::allocate( deviceHost );
+	Copy<type>::Data* data1 = Copy<type>::allocate( deviceGPU );
+
+	int dx = maxSize/NUM_TESTS;
+	for(int iter=0; iter<NUM_TESTS; iter++)
+	{
+		int size = min2( 128+dx*iter, maxSize-4 );
+		size = NEXTMULTIPLEOF( size, 4 );
+		float r = 10000.f;
+		for(int i=0; i<size; i++) buf0[i] = make_float2( getRandom( -r, r ), getRandom( -r, r ) );
+		buf2.write( buf0.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+
+		Copy<TYPE_HOST>::execute( data0, buf1, buf0, size );
+		Copy<type>::execute( data1, buf3, buf2, size );
+
+		buf3.read( devResult.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+		for(int i=0; i<size; i++)
+		{
+			TEST_ASSERT( buf1[i] == devResult[i] );
+			TEST_ASSERT( buf0[i] == devResult[i] );
+		}
+	}
+
+	Copy<TYPE_HOST>::deallocate( data0 );
+	Copy<type>::deallocate( data1 );
+
+	TEST_REPORT( "CopyF2Test" );
+}
+
+template<DeviceType type>
+void radixSort32Test( Device* deviceGPU, Device* deviceHost )
+{
+	TEST_INIT;
+	ADLASSERT( type == deviceGPU->m_type );
+
+	int maxSize = 1024*256;
+
+	HostBuffer<u32> buf0( deviceHost, maxSize );
+	HostBuffer<u32> buf1( deviceHost, maxSize );
+	Buffer<u32> buf2( deviceGPU, maxSize );
+
+	RadixSort32<TYPE_HOST>::Data* dataH = RadixSort32<TYPE_HOST>::allocate( deviceHost, maxSize );
+	RadixSort32<type>::Data* dataC = RadixSort32<type>::allocate( deviceGPU, maxSize );
+
+	int dx = maxSize/NUM_TESTS;
+	for(int iter=0; iter<NUM_TESTS; iter++)
+	{
+		int size = min2( 128+dx*iter, maxSize-512 );
+		size = NEXTMULTIPLEOF( size, 512 );
+
+		for(int i=0; i<size; i++) buf0[i] = getRandom(0u,0xffffffffu);
+		buf2.write( buf0.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+
+		RadixSort32<TYPE_HOST>::execute( dataH, buf0, size, 32 );
+		RadixSort32<type>::execute( dataC, buf2, size, 32 );
+
+		buf2.read( buf1.m_ptr, size );
+		DeviceUtils::waitForCompletion( deviceGPU );
+//		for(int i=0; i<size-1; i++) TEST_ASSERT( buf1[i] <= buf1[i+1] );
+		for(int i=0; i<size; i++) TEST_ASSERT( buf0[i] == buf1[i] );
+	}
+
+	RadixSort32<TYPE_HOST>::deallocate( dataH );
+	RadixSort32<type>::deallocate( dataC );
+
+	TEST_REPORT( "RadixSort32Test" );
+}
+
+
+
 #if defined(ADL_ENABLE_DX11)
 	#define RUN_GPU( func ) func(ddcl); func(dddx);
 	#define RUN_GPU_TEMPLATE( func ) func<TYPE_DX11>( dddx, ddhost ); func<TYPE_CL>( ddcl, ddhost ); 
@@ -449,9 +653,27 @@ void runAllTest()
 	}
 
 	{
+		char name[128];
+		ddcl->getDeviceName( name );
+		printf("CL: %s\n", name);
+#if defined(ADL_ENABLE_DX11)
+		dddx->getDeviceName( name );
+		printf("DX11: %s\n", name);
+#endif
+	}
+
+//	RUN_GPU_TEMPLATE( radixSort32Test );
+
+	{
+		RUN_GPU_TEMPLATE( CopyF1Test );
+		RUN_GPU_TEMPLATE( CopyF2Test );
+
 		boundSearchTest<TYPE_HOST>( ddhost, ddhost );
 //		fillTest<TYPE_HOST>( ddhost, ddhost );
 //		fillTest<TYPE_CL>( ddcl, ddhost );
+
+
+		RUN_GPU_TEMPLATE( radixSort32Test );
 
 		RUN_GPU_TEMPLATE( boundSearchTest );
 
@@ -466,6 +688,9 @@ void runAllTest()
 		RUN_GPU_TEMPLATE( radixSortStandardTest );
 		RUN_GPU_TEMPLATE( radixSortSimpleTest );
 		RUN_GPU_TEMPLATE( boundSearchTest );
+		RUN_GPU_TEMPLATE( Copy1F4Test );
+		RUN_GPU_TEMPLATE( Copy2F4Test );
+		RUN_GPU_TEMPLATE( Copy4F4Test );
 	}
 
 	DeviceUtils::deallocate( ddcl );
