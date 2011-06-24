@@ -1,11 +1,11 @@
 	
-	hasCL = findOpenCL()
+	hasCL = findOpenCL_AMD()
 	
 	if (hasCL) then
 
-		project "gpu_benchmark_radixsort"
+		project "gpu_benchmark_radixsort_AMD"
 
-		initOpenCL()
+		initOpenCL_AMD()
 		
 		language "C++"
 				

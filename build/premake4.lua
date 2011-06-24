@@ -50,7 +50,7 @@ solution "0MySolution"
 	location "build"
 	targetdir "bin"
 
---	include "../sample/api_gpu_research/benchmark_radixsort"
+	include "../sample/api_gpu_research/benchmark_radixsort"
 	include "../sample/api_gpu_research/unit_test/AMD"
 	include "../sample/api_gpu_research/unit_test/INTEL"
 	include "../sample/api_gpu_research/unit_test/NVIDIA"
