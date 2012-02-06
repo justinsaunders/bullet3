@@ -4,3 +4,4 @@ build/vs2010/
 build/vs2005/
 build/lib/
 build/.gitattributes
+.DS_Store
