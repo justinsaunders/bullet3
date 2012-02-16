@@ -42,13 +42,11 @@
 #  define vec_mul_float(a, b) vec_madd(a, b, vec_splats_float(0.0f))
 #  define vec_add_float(a, b) vec_add(a, b)
 #  define vec_sub_float(a, b) vec_sub(a, b)
-//#elif defined(__SSE__)
-//#  error "Not implemented."
+#elif defined(__SSE__)
+#  error "Not implemented."
 #else
 #  define _VECTORMATH_SCALAR_TEST
 #endif
-
-#include <stdio.h>
 
 float randfloats[1024] = {
   -0.658343927787421f,0.499803960969928f,-0.807256688752865f,0.740930454054151f,
@@ -352,7 +350,6 @@ float randfloat()
 #ifdef _WIN32
 	#define VM_ALIGNED16(a) __declspec(align(16)) a
 #else
-    #define VM_ALIGNED16(a) a __attribute__ ((aligned (16)))
 #endif
 
 #define VM_MAX_STRING_LEN 1024
@@ -700,8 +697,7 @@ inline int test( const Vectormath::Aos::Matrix3 & mat, const char * name , FILE*
 		totalPassedTests++;\
 	}\
 }
-
-void testfloat(const char* name, float value, FILE* goldReference, float epsilon)
+void testfloat(const char* name, float value)
 {
 	int numfailed=0;
 	if (goldReference)
@@ -716,10 +712,10 @@ void testfloat(const char* name, float value, FILE* goldReference, float epsilon
 		if (fabsf(x-value)>epsilon)
 		{
 			printf("Fail: test %s expected %f, found %f at line %d in file %s\n",name,value,x,__LINE__,__FILE__);
-			numfailed++;
+			totalFailedTests++;
 		} else
 		{
-			numfailed++;
+			totalPassedTests++;
 		}
 		fgets(tmpname,2,goldReference);
 	}
@@ -728,13 +724,11 @@ void testfloat(const char* name, float value, FILE* goldReference, float epsilon
 		printf(name);
 		printf("%f\n",value);
 	}
-    
-    return numfailed;
 }
 
 
 
-int testfloat(float value, FILE* goldReference, float epsilon)
+void testfloat(float value)
 {
 	int numfailed=0;
 	if (goldReference)
@@ -745,10 +739,10 @@ int testfloat(float value, FILE* goldReference, float epsilon)
 		if (fabsf(x-value)>epsilon)
 		{
 			printf("Fail: test expected %f, found %f at line %d in file %s\n",value,x,__LINE__,__FILE__);
-			numfailed++;
+			totalFailedTests++;
 		} else
 		{
-			numfailed++;
+			totalPassedTests++;
 		}
 		fgets(tmpname,2,goldReference);
 	}
@@ -756,8 +750,6 @@ int testfloat(float value, FILE* goldReference, float epsilon)
 	{
 		printf("%f\n",value);
 	}
-    
-    return numfailed;
 }
 
 #define testfloatWithoutName(a,b) testfloat(b)

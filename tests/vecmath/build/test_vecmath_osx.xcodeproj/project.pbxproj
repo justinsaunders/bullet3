@@ -6,13 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		D020D73614DF67D200B1CDA6 /* test3_aos_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020D73514DF67D200B1CDA6 /* test3_aos_cpp.cpp */; };
-		D0AD4E6D14DF37CF00FB4A34 /* test1_aos_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AD4E5914DF37CF00FB4A34 /* test1_aos_cpp.cpp */; };
-		D0AD4E7114DF37CF00FB4A34 /* test2_aos_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AD4E5E14DF37CF00FB4A34 /* test2_aos_cpp.cpp */; };
-		D0AD4E7914DF37CF00FB4A34 /* test4_aos_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AD4E6814DF37CF00FB4A34 /* test4_aos_cpp.cpp */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		D066DD3F14DF372000687223 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -39,16 +32,7 @@
 		D020D73214DF65D800B1CDA6 /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
 		D020D73314DF65D800B1CDA6 /* vecidx_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vecidx_aos.h; sourceTree = "<group>"; };
 		D020D73414DF65D800B1CDA6 /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
-		D020D73514DF67D200B1CDA6 /* test3_aos_cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test3_aos_cpp.cpp; path = ../../test3_aos_cpp.cpp; sourceTree = "<group>"; };
 		D066DD4114DF372000687223 /* test_vecmath_osx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0AD4E5714DF37CF00FB4A34 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = test.h; path = ../../test.h; sourceTree = "<group>"; };
-		D0AD4E5914DF37CF00FB4A34 /* test1_aos_cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test1_aos_cpp.cpp; path = ../../test1_aos_cpp.cpp; sourceTree = "<group>"; };
-		D0AD4E5A14DF37CF00FB4A34 /* test1_reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test1_reference.txt; path = ../../test1_reference.txt; sourceTree = "<group>"; };
-		D0AD4E5E14DF37CF00FB4A34 /* test2_aos_cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test2_aos_cpp.cpp; path = ../../test2_aos_cpp.cpp; sourceTree = "<group>"; };
-		D0AD4E5F14DF37CF00FB4A34 /* test2_reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test2_reference.txt; path = ../../test2_reference.txt; sourceTree = "<group>"; };
-		D0AD4E6414DF37CF00FB4A34 /* test3_reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test3_reference.txt; path = ../../test3_reference.txt; sourceTree = "<group>"; };
-		D0AD4E6814DF37CF00FB4A34 /* test4_aos_cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test4_aos_cpp.cpp; path = ../../test4_aos_cpp.cpp; sourceTree = "<group>"; };
-		D0AD4E6914DF37CF00FB4A34 /* test4_reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test4_reference.txt; path = ../../test4_reference.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,19 +94,18 @@
 		D066DD4414DF372000687223 /* test_vecmath_osx */ = {
 			isa = PBXGroup;
 			children = (
-				D020D72D14DF65D800B1CDA6 /* sse */,
-				D020D72514DF65CD00B1CDA6 /* std */,
-				D0AD4E5714DF37CF00FB4A34 /* test.h */,
-				D0AD4E5914DF37CF00FB4A34 /* test1_aos_cpp.cpp */,
-				D0AD4E5A14DF37CF00FB4A34 /* test1_reference.txt */,
-				D0AD4E5E14DF37CF00FB4A34 /* test2_aos_cpp.cpp */,
-				D0AD4E5F14DF37CF00FB4A34 /* test2_reference.txt */,
-				D020D73514DF67D200B1CDA6 /* test3_aos_cpp.cpp */,
-				D0AD4E6414DF37CF00FB4A34 /* test3_reference.txt */,
-				D0AD4E6814DF37CF00FB4A34 /* test4_aos_cpp.cpp */,
-				D0AD4E6914DF37CF00FB4A34 /* test4_reference.txt */,
+				D066E3BB14EDAAF40002B5CE /* vecmath */,
 			);
 			path = test_vecmath_osx;
+			sourceTree = "<group>";
+		};
+		D066E3BB14EDAAF40002B5CE /* vecmath */ = {
+			isa = PBXGroup;
+			children = (
+				D020D72514DF65CD00B1CDA6 /* std */,
+				D020D72D14DF65D800B1CDA6 /* sse */,
+			);
+			name = vecmath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,10 +158,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0AD4E6D14DF37CF00FB4A34 /* test1_aos_cpp.cpp in Sources */,
-				D0AD4E7114DF37CF00FB4A34 /* test2_aos_cpp.cpp in Sources */,
-				D0AD4E7914DF37CF00FB4A34 /* test4_aos_cpp.cpp in Sources */,
-				D020D73614DF67D200B1CDA6 /* test3_aos_cpp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
