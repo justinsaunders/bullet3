@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D066E44414EDB2710002B5CE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E44314EDB2710002B5CE /* main.cpp */; };
+		D066E44614EDB2710002B5CE /* test_vecmath_osx.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */; };
+		D066E49D14EDB2930002B5CE /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45314EDB2930002B5CE /* AssertException.cpp */; };
+		D066E49E14EDB2930002B5CE /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45614EDB2930002B5CE /* Checks.cpp */; };
+		D066E49F14EDB2930002B5CE /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45914EDB2930002B5CE /* CurrentTest.cpp */; };
+		D066E4A014EDB2930002B5CE /* DeferredTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45B14EDB2930002B5CE /* DeferredTestReporter.cpp */; };
+		D066E4A114EDB2930002B5CE /* DeferredTestResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45D14EDB2930002B5CE /* DeferredTestResult.cpp */; };
+		D066E4A214EDB2930002B5CE /* MemoryOutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46014EDB2930002B5CE /* MemoryOutStream.cpp */; };
+		D066E4A314EDB2930002B5CE /* SignalTranslator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46314EDB2930002B5CE /* SignalTranslator.cpp */; };
+		D066E4A414EDB2930002B5CE /* TimeHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46514EDB2930002B5CE /* TimeHelpers.cpp */; };
+		D066E4A514EDB2930002B5CE /* ReportAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46714EDB2930002B5CE /* ReportAssert.cpp */; };
+		D066E4A614EDB2930002B5CE /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46914EDB2930002B5CE /* Test.cpp */; };
+		D066E4A714EDB2930002B5CE /* TestDetails.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46B14EDB2930002B5CE /* TestDetails.cpp */; };
+		D066E4A814EDB2930002B5CE /* TestList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E46D14EDB2930002B5CE /* TestList.cpp */; };
+		D066E4A914EDB2930002B5CE /* TestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47014EDB2930002B5CE /* TestReporter.cpp */; };
+		D066E4AA14EDB2930002B5CE /* TestReporterStdout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47214EDB2930002B5CE /* TestReporterStdout.cpp */; };
+		D066E4AB14EDB2930002B5CE /* TestResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47414EDB2930002B5CE /* TestResults.cpp */; };
+		D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47614EDB2930002B5CE /* TestRunner.cpp */; };
+		D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */; };
+		D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D066E43D14EDB2710002B5CE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				D066E44614EDB2710002B5CE /* test_vecmath_osx.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D066E43F14EDB2710002B5CE /* test_vecmath_osx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx; sourceTree = BUILT_PRODUCTS_DIR; };
+		D066E44314EDB2710002B5CE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test_vecmath_osx.1; sourceTree = "<group>"; };
+		D066E45314EDB2930002B5CE /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssertException.cpp; sourceTree = "<group>"; };
+		D066E45414EDB2930002B5CE /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssertException.h; sourceTree = "<group>"; };
+		D066E45514EDB2930002B5CE /* CheckMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckMacros.h; sourceTree = "<group>"; };
+		D066E45614EDB2930002B5CE /* Checks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Checks.cpp; sourceTree = "<group>"; };
+		D066E45714EDB2930002B5CE /* Checks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checks.h; sourceTree = "<group>"; };
+		D066E45814EDB2930002B5CE /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		D066E45914EDB2930002B5CE /* CurrentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurrentTest.cpp; sourceTree = "<group>"; };
+		D066E45A14EDB2930002B5CE /* CurrentTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTest.h; sourceTree = "<group>"; };
+		D066E45B14EDB2930002B5CE /* DeferredTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestReporter.cpp; sourceTree = "<group>"; };
+		D066E45C14EDB2930002B5CE /* DeferredTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredTestReporter.h; sourceTree = "<group>"; };
+		D066E45D14EDB2930002B5CE /* DeferredTestResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestResult.cpp; sourceTree = "<group>"; };
+		D066E45E14EDB2930002B5CE /* DeferredTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredTestResult.h; sourceTree = "<group>"; };
+		D066E45F14EDB2930002B5CE /* ExecuteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExecuteTest.h; sourceTree = "<group>"; };
+		D066E46014EDB2930002B5CE /* MemoryOutStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryOutStream.cpp; sourceTree = "<group>"; };
+		D066E46114EDB2930002B5CE /* MemoryOutStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryOutStream.h; sourceTree = "<group>"; };
+		D066E46314EDB2930002B5CE /* SignalTranslator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalTranslator.cpp; sourceTree = "<group>"; };
+		D066E46414EDB2930002B5CE /* SignalTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalTranslator.h; sourceTree = "<group>"; };
+		D066E46514EDB2930002B5CE /* TimeHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeHelpers.cpp; sourceTree = "<group>"; };
+		D066E46614EDB2930002B5CE /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		D066E46714EDB2930002B5CE /* ReportAssert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReportAssert.cpp; sourceTree = "<group>"; };
+		D066E46814EDB2930002B5CE /* ReportAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportAssert.h; sourceTree = "<group>"; };
+		D066E46914EDB2930002B5CE /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		D066E46A14EDB2930002B5CE /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		D066E46B14EDB2930002B5CE /* TestDetails.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDetails.cpp; sourceTree = "<group>"; };
+		D066E46C14EDB2930002B5CE /* TestDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDetails.h; sourceTree = "<group>"; };
+		D066E46D14EDB2930002B5CE /* TestList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestList.cpp; sourceTree = "<group>"; };
+		D066E46E14EDB2930002B5CE /* TestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestList.h; sourceTree = "<group>"; };
+		D066E46F14EDB2930002B5CE /* TestMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMacros.h; sourceTree = "<group>"; };
+		D066E47014EDB2930002B5CE /* TestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporter.cpp; sourceTree = "<group>"; };
+		D066E47114EDB2930002B5CE /* TestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReporter.h; sourceTree = "<group>"; };
+		D066E47214EDB2930002B5CE /* TestReporterStdout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporterStdout.cpp; sourceTree = "<group>"; };
+		D066E47314EDB2930002B5CE /* TestReporterStdout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReporterStdout.h; sourceTree = "<group>"; };
+		D066E47414EDB2930002B5CE /* TestResults.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestResults.cpp; sourceTree = "<group>"; };
+		D066E47514EDB2930002B5CE /* TestResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestResults.h; sourceTree = "<group>"; };
+		D066E47614EDB2930002B5CE /* TestRunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestRunner.cpp; sourceTree = "<group>"; };
+		D066E47714EDB2930002B5CE /* TestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		D066E48C14EDB2930002B5CE /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSuite.h; sourceTree = "<group>"; };
+		D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeConstraint.cpp; sourceTree = "<group>"; };
+		D066E48E14EDB2930002B5CE /* TimeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeConstraint.h; sourceTree = "<group>"; };
+		D066E48F14EDB2930002B5CE /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		D066E49014EDB2930002B5CE /* UnitTest++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UnitTest++.h"; sourceTree = "<group>"; };
+		D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTestReporter.cpp; sourceTree = "<group>"; };
+		D066E49514EDB2930002B5CE /* XmlTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlTestReporter.h; sourceTree = "<group>"; };
+		D066E4C314EDB2A30002B5CE /* boolInVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boolInVec.h; sourceTree = "<group>"; };
+		D066E4C414EDB2A30002B5CE /* floatInVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floatInVec.h; sourceTree = "<group>"; };
+		D066E4C514EDB2A30002B5CE /* mat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat_aos.h; sourceTree = "<group>"; };
+		D066E4C614EDB2A30002B5CE /* quat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quat_aos.h; sourceTree = "<group>"; };
+		D066E4C714EDB2A30002B5CE /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
+		D066E4C814EDB2A30002B5CE /* vecidx_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vecidx_aos.h; sourceTree = "<group>"; };
+		D066E4C914EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
+		D066E4CB14EDB2A30002B5CE /* boolInVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boolInVec.h; sourceTree = "<group>"; };
+		D066E4CC14EDB2A30002B5CE /* floatInVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floatInVec.h; sourceTree = "<group>"; };
+		D066E4CD14EDB2A30002B5CE /* mat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat_aos.h; sourceTree = "<group>"; };
+		D066E4CE14EDB2A30002B5CE /* quat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quat_aos.h; sourceTree = "<group>"; };
+		D066E4CF14EDB2A30002B5CE /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
+		D066E4D014EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D066E43C14EDB2710002B5CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D066E43414EDB2710002B5CE = {
+			isa = PBXGroup;
+			children = (
+				D066E44214EDB2710002B5CE /* test_vecmath_osx */,
+				D066E44014EDB2710002B5CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D066E44014EDB2710002B5CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D066E43F14EDB2710002B5CE /* test_vecmath_osx */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D066E44214EDB2710002B5CE /* test_vecmath_osx */ = {
+			isa = PBXGroup;
+			children = (
+				D066E4C114EDB2A30002B5CE /* vecmath */,
+				D066E44C14EDB2930002B5CE /* unittest++ */,
+				D066E44314EDB2710002B5CE /* main.cpp */,
+				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
+			);
+			path = test_vecmath_osx;
+			sourceTree = "<group>";
+		};
+		D066E44C14EDB2930002B5CE /* unittest++ */ = {
+			isa = PBXGroup;
+			children = (
+				D066E45214EDB2930002B5CE /* src */,
+			);
+			name = "unittest++";
+			path = "../../../../unittest++";
+			sourceTree = "<group>";
+		};
+		D066E45214EDB2930002B5CE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D066E45314EDB2930002B5CE /* AssertException.cpp */,
+				D066E45414EDB2930002B5CE /* AssertException.h */,
+				D066E45514EDB2930002B5CE /* CheckMacros.h */,
+				D066E45614EDB2930002B5CE /* Checks.cpp */,
+				D066E45714EDB2930002B5CE /* Checks.h */,
+				D066E45814EDB2930002B5CE /* Config.h */,
+				D066E45914EDB2930002B5CE /* CurrentTest.cpp */,
+				D066E45A14EDB2930002B5CE /* CurrentTest.h */,
+				D066E45B14EDB2930002B5CE /* DeferredTestReporter.cpp */,
+				D066E45C14EDB2930002B5CE /* DeferredTestReporter.h */,
+				D066E45D14EDB2930002B5CE /* DeferredTestResult.cpp */,
+				D066E45E14EDB2930002B5CE /* DeferredTestResult.h */,
+				D066E45F14EDB2930002B5CE /* ExecuteTest.h */,
+				D066E46014EDB2930002B5CE /* MemoryOutStream.cpp */,
+				D066E46114EDB2930002B5CE /* MemoryOutStream.h */,
+				D066E46214EDB2930002B5CE /* Posix */,
+				D066E46714EDB2930002B5CE /* ReportAssert.cpp */,
+				D066E46814EDB2930002B5CE /* ReportAssert.h */,
+				D066E46914EDB2930002B5CE /* Test.cpp */,
+				D066E46A14EDB2930002B5CE /* Test.h */,
+				D066E46B14EDB2930002B5CE /* TestDetails.cpp */,
+				D066E46C14EDB2930002B5CE /* TestDetails.h */,
+				D066E46D14EDB2930002B5CE /* TestList.cpp */,
+				D066E46E14EDB2930002B5CE /* TestList.h */,
+				D066E46F14EDB2930002B5CE /* TestMacros.h */,
+				D066E47014EDB2930002B5CE /* TestReporter.cpp */,
+				D066E47114EDB2930002B5CE /* TestReporter.h */,
+				D066E47214EDB2930002B5CE /* TestReporterStdout.cpp */,
+				D066E47314EDB2930002B5CE /* TestReporterStdout.h */,
+				D066E47414EDB2930002B5CE /* TestResults.cpp */,
+				D066E47514EDB2930002B5CE /* TestResults.h */,
+				D066E47614EDB2930002B5CE /* TestRunner.cpp */,
+				D066E47714EDB2930002B5CE /* TestRunner.h */,
+				D066E48C14EDB2930002B5CE /* TestSuite.h */,
+				D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */,
+				D066E48E14EDB2930002B5CE /* TimeConstraint.h */,
+				D066E48F14EDB2930002B5CE /* TimeHelpers.h */,
+				D066E49014EDB2930002B5CE /* UnitTest++.h */,
+				D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */,
+				D066E49514EDB2930002B5CE /* XmlTestReporter.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D066E46214EDB2930002B5CE /* Posix */ = {
+			isa = PBXGroup;
+			children = (
+				D066E46314EDB2930002B5CE /* SignalTranslator.cpp */,
+				D066E46414EDB2930002B5CE /* SignalTranslator.h */,
+				D066E46514EDB2930002B5CE /* TimeHelpers.cpp */,
+				D066E46614EDB2930002B5CE /* TimeHelpers.h */,
+			);
+			path = Posix;
+			sourceTree = "<group>";
+		};
+		D066E4C114EDB2A30002B5CE /* vecmath */ = {
+			isa = PBXGroup;
+			children = (
+				D066E4C214EDB2A30002B5CE /* sse */,
+				D066E4CA14EDB2A30002B5CE /* std */,
+			);
+			name = vecmath;
+			path = ../../../../../include/vecmath;
+			sourceTree = "<group>";
+		};
+		D066E4C214EDB2A30002B5CE /* sse */ = {
+			isa = PBXGroup;
+			children = (
+				D066E4C314EDB2A30002B5CE /* boolInVec.h */,
+				D066E4C414EDB2A30002B5CE /* floatInVec.h */,
+				D066E4C514EDB2A30002B5CE /* mat_aos.h */,
+				D066E4C614EDB2A30002B5CE /* quat_aos.h */,
+				D066E4C714EDB2A30002B5CE /* vec_aos.h */,
+				D066E4C814EDB2A30002B5CE /* vecidx_aos.h */,
+				D066E4C914EDB2A30002B5CE /* vectormath_aos.h */,
+			);
+			path = sse;
+			sourceTree = "<group>";
+		};
+		D066E4CA14EDB2A30002B5CE /* std */ = {
+			isa = PBXGroup;
+			children = (
+				D066E4CB14EDB2A30002B5CE /* boolInVec.h */,
+				D066E4CC14EDB2A30002B5CE /* floatInVec.h */,
+				D066E4CD14EDB2A30002B5CE /* mat_aos.h */,
+				D066E4CE14EDB2A30002B5CE /* quat_aos.h */,
+				D066E4CF14EDB2A30002B5CE /* vec_aos.h */,
+				D066E4D014EDB2A30002B5CE /* vectormath_aos.h */,
+			);
+			path = std;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D066E43E14EDB2710002B5CE /* test_vecmath_osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D066E44914EDB2710002B5CE /* Build configuration list for PBXNativeTarget "test_vecmath_osx" */;
+			buildPhases = (
+				D066E43B14EDB2710002B5CE /* Sources */,
+				D066E43C14EDB2710002B5CE /* Frameworks */,
+				D066E43D14EDB2710002B5CE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = test_vecmath_osx;
+			productName = test_vecmath_osx;
+			productReference = D066E43F14EDB2710002B5CE /* test_vecmath_osx */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D066E43614EDB2710002B5CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = D066E43914EDB2710002B5CE /* Build configuration list for PBXProject "test_vecmath_osx" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D066E43414EDB2710002B5CE;
+			productRefGroup = D066E44014EDB2710002B5CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D066E43E14EDB2710002B5CE /* test_vecmath_osx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D066E43B14EDB2710002B5CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D066E44414EDB2710002B5CE /* main.cpp in Sources */,
+				D066E49D14EDB2930002B5CE /* AssertException.cpp in Sources */,
+				D066E49E14EDB2930002B5CE /* Checks.cpp in Sources */,
+				D066E49F14EDB2930002B5CE /* CurrentTest.cpp in Sources */,
+				D066E4A014EDB2930002B5CE /* DeferredTestReporter.cpp in Sources */,
+				D066E4A114EDB2930002B5CE /* DeferredTestResult.cpp in Sources */,
+				D066E4A214EDB2930002B5CE /* MemoryOutStream.cpp in Sources */,
+				D066E4A314EDB2930002B5CE /* SignalTranslator.cpp in Sources */,
+				D066E4A414EDB2930002B5CE /* TimeHelpers.cpp in Sources */,
+				D066E4A514EDB2930002B5CE /* ReportAssert.cpp in Sources */,
+				D066E4A614EDB2930002B5CE /* Test.cpp in Sources */,
+				D066E4A714EDB2930002B5CE /* TestDetails.cpp in Sources */,
+				D066E4A814EDB2930002B5CE /* TestList.cpp in Sources */,
+				D066E4A914EDB2930002B5CE /* TestReporter.cpp in Sources */,
+				D066E4AA14EDB2930002B5CE /* TestReporterStdout.cpp in Sources */,
+				D066E4AB14EDB2930002B5CE /* TestResults.cpp in Sources */,
+				D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */,
+				D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */,
+				D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D066E44714EDB2710002B5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D066E44814EDB2710002B5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D066E44A14EDB2710002B5CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D066E44B14EDB2710002B5CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D066E43914EDB2710002B5CE /* Build configuration list for PBXProject "test_vecmath_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D066E44714EDB2710002B5CE /* Debug */,
+				D066E44814EDB2710002B5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D066E44914EDB2710002B5CE /* Build configuration list for PBXNativeTarget "test_vecmath_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D066E44A14EDB2710002B5CE /* Debug */,
+				D066E44B14EDB2710002B5CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D066E43614EDB2710002B5CE /* Project object */;
+}
