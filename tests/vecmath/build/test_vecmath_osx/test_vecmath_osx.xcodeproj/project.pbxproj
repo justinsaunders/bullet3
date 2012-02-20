@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D066E44414EDB2710002B5CE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E44314EDB2710002B5CE /* main.cpp */; };
 		D066E44614EDB2710002B5CE /* test_vecmath_osx.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */; };
 		D066E49D14EDB2930002B5CE /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45314EDB2930002B5CE /* AssertException.cpp */; };
 		D066E49E14EDB2930002B5CE /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45614EDB2930002B5CE /* Checks.cpp */; };
@@ -27,6 +26,7 @@
 		D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47614EDB2930002B5CE /* TestRunner.cpp */; };
 		D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */; };
 		D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */; };
+		D072287A14F3112F00B6773D /* test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* test_main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		D066E43F14EDB2710002B5CE /* test_vecmath_osx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx; sourceTree = BUILT_PRODUCTS_DIR; };
-		D066E44314EDB2710002B5CE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test_vecmath_osx.1; sourceTree = "<group>"; };
 		D066E45314EDB2930002B5CE /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssertException.cpp; sourceTree = "<group>"; };
 		D066E45414EDB2930002B5CE /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssertException.h; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		D066E4CE14EDB2A30002B5CE /* quat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quat_aos.h; sourceTree = "<group>"; };
 		D066E4CF14EDB2A30002B5CE /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
 		D066E4D014EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
+		D072287914F3112F00B6773D /* test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main.cpp; path = ../../../test_main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,10 +134,10 @@
 		D066E44214EDB2710002B5CE /* test_vecmath_osx */ = {
 			isa = PBXGroup;
 			children = (
+				D072287914F3112F00B6773D /* test_main.cpp */,
+				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
 				D066E4C114EDB2A30002B5CE /* vecmath */,
 				D066E44C14EDB2930002B5CE /* unittest++ */,
-				D066E44314EDB2710002B5CE /* main.cpp */,
-				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
 			);
 			path = test_vecmath_osx;
 			sourceTree = "<group>";
@@ -273,6 +273,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Justin Saunders";
 			};
 			buildConfigurationList = D066E43914EDB2710002B5CE /* Build configuration list for PBXProject "test_vecmath_osx" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -296,7 +297,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D066E44414EDB2710002B5CE /* main.cpp in Sources */,
 				D066E49D14EDB2930002B5CE /* AssertException.cpp in Sources */,
 				D066E49E14EDB2930002B5CE /* Checks.cpp in Sources */,
 				D066E49F14EDB2930002B5CE /* CurrentTest.cpp in Sources */,
@@ -315,6 +315,7 @@
 				D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */,
 				D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */,
 				D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */,
+				D072287A14F3112F00B6773D /* test_main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +400,7 @@
 				D066E44B14EDB2710002B5CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
