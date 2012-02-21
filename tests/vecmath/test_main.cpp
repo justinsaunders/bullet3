@@ -28,8 +28,12 @@ static const char* sImplementations[] =
 
 int main (int argc, const char *argv[])
 {
-    std::cout << "Test Vecmath:" << sArchitectures[TEST_VECMATH_ARCH_CURRENT]
-        << ", " << sImplementations[TEST_VECMATH_IMPL_CURRENT] << "\n";
+    std::cout << "*** Test Vecmath ***\n";
+    std::cout << "Architecture: " << sArchitectures[TEST_VECMATH_ARCH_CURRENT] << "\n";
+    std::cout << "Implementation: " << sImplementations[TEST_VECMATH_IMPL_CURRENT];
+#ifdef FORCE_REF_IMPL
+    std::cout << " (Forcing reference implementation)\n";
+#endif
     
     return UnitTest::RunAllTests();
 }
