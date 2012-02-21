@@ -104,6 +104,7 @@
 		D066E4D014EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
 		D072287914F3112F00B6773D /* test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main.cpp; path = ../../../test_main.cpp; sourceTree = "<group>"; };
 		D0C8C88F14F328EF0061CAA3 /* test_vec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_vec.cpp; path = ../../../test_vec.cpp; sourceTree = "<group>"; };
+		D0C8C89214F332F70061CAA3 /* arch_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arch_defines.h; path = ../../../arch_defines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +137,7 @@
 		D066E44214EDB2710002B5CE /* test_vecmath_osx */ = {
 			isa = PBXGroup;
 			children = (
+				D0C8C89214F332F70061CAA3 /* arch_defines.h */,
 				D072287914F3112F00B6773D /* test_main.cpp */,
 				D0C8C88F14F328EF0061CAA3 /* test_vec.cpp */,
 				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
