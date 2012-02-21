@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Justin Saunders. All rights reserved.
 //
 
-#include <iostream>
 #include "UnitTest++.h"
 
 int main (int argc, const char * argv[])

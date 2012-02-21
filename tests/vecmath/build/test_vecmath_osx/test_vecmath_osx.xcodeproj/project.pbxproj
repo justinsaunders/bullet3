@@ -27,6 +27,7 @@
 		D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */; };
 		D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */; };
 		D072287A14F3112F00B6773D /* test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* test_main.cpp */; };
+		D0C8C89014F328EF0061CAA3 /* test_vec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C8C88F14F328EF0061CAA3 /* test_vec.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +103,7 @@
 		D066E4CF14EDB2A30002B5CE /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
 		D066E4D014EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
 		D072287914F3112F00B6773D /* test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main.cpp; path = ../../../test_main.cpp; sourceTree = "<group>"; };
+		D0C8C88F14F328EF0061CAA3 /* test_vec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_vec.cpp; path = ../../../test_vec.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				D072287914F3112F00B6773D /* test_main.cpp */,
+				D0C8C88F14F328EF0061CAA3 /* test_vec.cpp */,
 				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
 				D066E4C114EDB2A30002B5CE /* vecmath */,
 				D066E44C14EDB2930002B5CE /* unittest++ */,
@@ -316,6 +319,7 @@
 				D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */,
 				D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */,
 				D072287A14F3112F00B6773D /* test_main.cpp in Sources */,
+				D0C8C89014F328EF0061CAA3 /* test_vec.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +349,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../../include/**";
 			};
 			name = Debug;
 		};
@@ -364,6 +369,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../../include/**";
 			};
 			name = Release;
 		};
