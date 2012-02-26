@@ -39,6 +39,7 @@
 #ifndef FORCE_REF_IMPL
     #if TEST_VECMATH_ARCH_CURRENT == TEST_VECMATH_ARCH_X86
         #define TEST_VECMATH_IMPL_CURRENT TEST_VECMATH_IMPL_SSE
+        #include "vecmath/sse/vectormath_aos.h"
     #elif TEST_VECMATH_ARCH_CURRENT == TEST_VECMATH_ARCH_ARM
         #define TEST_VECMATH_IMPL_CURRENT TEST_VECMATH_IMPL_NEON
     #endif
@@ -47,6 +48,7 @@
 // Nothing defined, fall back to ref
 #if !defined( TEST_VECMATH_IMPL_CURRENT )
     #define TEST_VECMATH_IMPL_CURRENT TEST_VECMATH_IMPL_REF
+    #include "vecmath/std/vectormath_aos.h"
 #endif
 
 #endif
