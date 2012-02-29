@@ -51,4 +51,11 @@
     #include "vecmath/std/vectormath_aos.h"
 #endif
 
+// Some test utilities
+#if TEST_VECMATH_IMPL_CURRENT != TEST_VECMATH_IMPL_SSE
+static const float kEpsilon = 1e-5f;
+#else
+static const float kEpsilon = 2.5e-4f;
+#endif
+
 #endif
