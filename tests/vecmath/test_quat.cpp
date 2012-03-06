@@ -10,6 +10,7 @@
 
 using namespace Vectormath::Aos;
 
+
 SUITE(Quat)
 {
     TEST(float4Constructor)
@@ -57,8 +58,28 @@ SUITE(Quat)
     
     TEST(Matrix3Constructor)
     {
+        const float sin0 = sin(45 * DEGTORAD);
+        const float cos0 = cos(45 * DEGTORAD);
         
-    }
+        Matrix3 m(Vector3(1.f, 0.f, 0.f),
+                  Vector3(0.f, cos0, -sin0),
+                  Vector3(0.f, sin0, cos0));
+        
+        Quat q(m);
+        Matrix3 m2(q);
+        
+        
+        CHECK_EQUAL(1.f, m2[0][0]);
+        CHECK_EQUAL(0.f, m2[0][1]);
+        CHECK_EQUAL(0.f, m2[0][2]);
+        
+        CHECK_EQUAL(0.f,   m2[1][0]);
+        CHECK_CLOSE(cos0,  m2[1][1], kEpsilon);
+        CHECK_CLOSE(-sin0, m2[1][2], kEpsilon);
+        
+        CHECK_EQUAL(0.f,  m2[2][0]);
+        CHECK_CLOSE(sin0, m2[2][1], kEpsilon);
+        CHECK_CLOSE(cos0, m2[2][2], kEpsilon);            }
     
     TEST(operatorAssignmentEquals)
     {
@@ -238,5 +259,103 @@ SUITE(Quat)
         CHECK_EQUAL(0.f, q[1]);
         CHECK_EQUAL(0.f, q[2]);
         CHECK_EQUAL(1.f, q[3]);
+    }
+    
+    TEST(rotation_two_axes)
+    {
+        const Vector3 up = Vector3::xAxis();
+        const Vector3 left = Vector3::zAxis();
+        const Vector3 input = up;
+        
+        const Quat    rotate = Quat::rotation(up, left);
+        const Matrix3 m(rotate);
+        const Vector3 output = m * input;
+        
+        CHECK_CLOSE(left[0], output[0], kEpsilon);
+        CHECK_CLOSE(left[1], output[1], kEpsilon);
+        CHECK_CLOSE(left[2], output[2], kEpsilon);
+    }
+    
+    TEST(rotation_around_axis)
+    {
+        const Quat      rotate = Quat::rotation(45 * DEGTORAD, -Vector3::xAxis());
+        const Matrix3   m(rotate);
+        const float     sin0 = sin(45 * DEGTORAD);
+        const float     cos0 = cos(45 * DEGTORAD);
+        
+        CHECK_EQUAL(1.f, m[0][0]);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        
+        CHECK_EQUAL(0.f,   m[1][0]);
+        CHECK_CLOSE(cos0,  m[1][1], kEpsilon);
+        CHECK_CLOSE(-sin0, m[1][2], kEpsilon);
+        
+        CHECK_EQUAL(0.f,  m[2][0]);
+        CHECK_CLOSE(sin0, m[2][1], kEpsilon);
+        CHECK_CLOSE(cos0, m[2][2], kEpsilon);                              
+    }
+    
+    TEST(rotationX)
+    {
+        const float     radians = 45 * DEGTORAD;
+        const Quat      rotate = Quat::rotationX(radians);
+        const Matrix3   m(rotate);
+        const float     sin0 = sin(radians);
+        const float     cos0 = cos(radians);
+        
+        CHECK_EQUAL(1.f, m[0][0]);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        
+        CHECK_EQUAL(0.f,   m[1][0]);
+        CHECK_CLOSE(cos0,  m[1][1], kEpsilon);
+        CHECK_CLOSE(sin0, m[1][2], kEpsilon);
+        
+        CHECK_EQUAL(0.f,  m[2][0]);
+        CHECK_CLOSE(-sin0, m[2][1], kEpsilon);
+        CHECK_CLOSE(cos0, m[2][2], kEpsilon);
+    }
+    
+    TEST(rotationY)
+    {
+        const float     radians = 45 * DEGTORAD;
+        const Quat      rotate = Quat::rotationY(radians);
+        const Matrix3   m(rotate);
+        const float     sin0 = sin(radians);
+        const float     cos0 = cos(radians);
+     
+        CHECK_CLOSE(cos0, m[0][0], kEpsilon);
+        CHECK_EQUAL(0.f,  m[0][1]);
+        CHECK_CLOSE(-sin0, m[0][2], kEpsilon);
+        
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_EQUAL(1.f, m[1][1]);
+        CHECK_EQUAL(0.f, m[1][2]);
+
+        CHECK_CLOSE(sin0, m[2][0], kEpsilon);
+        CHECK_EQUAL(0.f,   m[2][1]);
+        CHECK_CLOSE(cos0,  m[2][2], kEpsilon);
+    }
+    
+    TEST(rotationZ)
+    {
+        const float     radians = 45 * DEGTORAD;
+        const Quat      rotate = Quat::rotationZ(radians);
+        const Matrix3   m(rotate);
+        const float     sin0 = sin(radians);
+        const float     cos0 = cos(radians);
+     
+        CHECK_CLOSE(cos0, m[0][0], kEpsilon);
+        CHECK_CLOSE(sin0, m[0][1], kEpsilon);
+        CHECK_EQUAL(0.f,  m[0][2]);
+        
+        CHECK_CLOSE(-sin0, m[1][0], kEpsilon);
+        CHECK_CLOSE(cos0,  m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f,   m[1][2]);
+        
+        CHECK_EQUAL(0.f, m[2][0]);
+        CHECK_EQUAL(0.f, m[2][1]);
+        CHECK_EQUAL(1.f, m[2][2]);
     }
 }
