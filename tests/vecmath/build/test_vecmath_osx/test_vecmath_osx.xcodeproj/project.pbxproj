@@ -11,7 +11,6 @@
 		D03D6FED14FDDDA1008CA2FF /* test_vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */; };
 		D03D6FF014FDE03C008CA2FF /* test_quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */; };
 		D03D6FF114FDE03C008CA2FF /* test_quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */; };
-		D066E44614EDB2710002B5CE /* test_vecmath_osx.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */; };
 		D066E49D14EDB2930002B5CE /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45314EDB2930002B5CE /* AssertException.cpp */; };
 		D066E49E14EDB2930002B5CE /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45614EDB2930002B5CE /* Checks.cpp */; };
 		D066E49F14EDB2930002B5CE /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45914EDB2930002B5CE /* CurrentTest.cpp */; };
@@ -30,10 +29,12 @@
 		D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47614EDB2930002B5CE /* TestRunner.cpp */; };
 		D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */; };
 		D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */; };
-		D072287A14F3112F00B6773D /* test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* test_main.cpp */; };
+		D072287A14F3112F00B6773D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* main.cpp */; };
 		D0C8C89014F328EF0061CAA3 /* test_vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C8C88F14F328EF0061CAA3 /* test_vector3.cpp */; };
 		D0D55A20150D5B3800100C00 /* test_point3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D55A1F150D5B3800100C00 /* test_point3.cpp */; };
 		D0D55A21150D5B3800100C00 /* test_point3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D55A1F150D5B3800100C00 /* test_point3.cpp */; };
+		D0D55A24150F0A5000100C00 /* test_matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D55A23150F0A5000100C00 /* test_matrix3.cpp */; };
+		D0D55A25150F0A5000100C00 /* test_matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D55A23150F0A5000100C00 /* test_matrix3.cpp */; };
 		D0D6B0C414FADBA700A8AC22 /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45314EDB2930002B5CE /* AssertException.cpp */; };
 		D0D6B0C514FADBA700A8AC22 /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45614EDB2930002B5CE /* Checks.cpp */; };
 		D0D6B0C614FADBA700A8AC22 /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E45914EDB2930002B5CE /* CurrentTest.cpp */; };
@@ -52,9 +53,8 @@
 		D0D6B0D314FADBA700A8AC22 /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E47614EDB2930002B5CE /* TestRunner.cpp */; };
 		D0D6B0D414FADBA700A8AC22 /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E48D14EDB2930002B5CE /* TimeConstraint.cpp */; };
 		D0D6B0D514FADBA700A8AC22 /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D066E49414EDB2930002B5CE /* XmlTestReporter.cpp */; };
-		D0D6B0D614FADBA700A8AC22 /* test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* test_main.cpp */; };
+		D0D6B0D614FADBA700A8AC22 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072287914F3112F00B6773D /* main.cpp */; };
 		D0D6B0D714FADBA700A8AC22 /* test_vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C8C88F14F328EF0061CAA3 /* test_vector3.cpp */; };
-		D0D6B0DA14FADBA700A8AC22 /* test_vecmath_osx.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,7 +64,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				D066E44614EDB2710002B5CE /* test_vecmath_osx.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -74,7 +73,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				D0D6B0DA14FADBA700A8AC22 /* test_vecmath_osx.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -84,7 +82,6 @@
 		D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_vector4.cpp; path = ../../../test_vector4.cpp; sourceTree = "<group>"; };
 		D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_quat.cpp; path = ../../../test_quat.cpp; sourceTree = "<group>"; };
 		D066E43F14EDB2710002B5CE /* test_vecmath_osx_std */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx_std; sourceTree = BUILT_PRODUCTS_DIR; };
-		D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = test_vecmath_osx.1; sourceTree = "<group>"; };
 		D066E45314EDB2930002B5CE /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssertException.cpp; sourceTree = "<group>"; };
 		D066E45414EDB2930002B5CE /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssertException.h; sourceTree = "<group>"; };
 		D066E45514EDB2930002B5CE /* CheckMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckMacros.h; sourceTree = "<group>"; };
@@ -141,10 +138,11 @@
 		D066E4CE14EDB2A30002B5CE /* quat_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quat_aos.h; sourceTree = "<group>"; };
 		D066E4CF14EDB2A30002B5CE /* vec_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec_aos.h; sourceTree = "<group>"; };
 		D066E4D014EDB2A30002B5CE /* vectormath_aos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectormath_aos.h; sourceTree = "<group>"; };
-		D072287914F3112F00B6773D /* test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main.cpp; path = ../../../test_main.cpp; sourceTree = "<group>"; };
+		D072287914F3112F00B6773D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../main.cpp; sourceTree = "<group>"; };
 		D0C8C88F14F328EF0061CAA3 /* test_vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_vector3.cpp; path = ../../../test_vector3.cpp; sourceTree = "<group>"; };
 		D0C8C89214F332F70061CAA3 /* arch_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arch_defines.h; path = ../../../arch_defines.h; sourceTree = "<group>"; };
 		D0D55A1F150D5B3800100C00 /* test_point3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_point3.cpp; path = ../../../test_point3.cpp; sourceTree = "<group>"; };
+		D0D55A23150F0A5000100C00 /* test_matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_matrix3.cpp; path = ../../../test_matrix3.cpp; sourceTree = "<group>"; };
 		D0D6B0DE14FADBA700A8AC22 /* test_vecmath_osx_sse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx_sse; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -186,13 +184,13 @@
 		D066E44214EDB2710002B5CE /* test_vecmath_osx */ = {
 			isa = PBXGroup;
 			children = (
-				D0D55A1F150D5B3800100C00 /* test_point3.cpp */,
 				D0C8C89214F332F70061CAA3 /* arch_defines.h */,
-				D072287914F3112F00B6773D /* test_main.cpp */,
+				D072287914F3112F00B6773D /* main.cpp */,
+				D0D55A23150F0A5000100C00 /* test_matrix3.cpp */,
+				D0D55A1F150D5B3800100C00 /* test_point3.cpp */,
+				D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */,
 				D0C8C88F14F328EF0061CAA3 /* test_vector3.cpp */,
 				D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */,
-				D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */,
-				D066E44514EDB2710002B5CE /* test_vecmath_osx.1 */,
 				D066E4C114EDB2A30002B5CE /* vecmath */,
 				D066E44C14EDB2930002B5CE /* unittest++ */,
 			);
@@ -346,7 +344,7 @@
 		D066E43614EDB2710002B5CE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Justin Saunders";
 			};
 			buildConfigurationList = D066E43914EDB2710002B5CE /* Build configuration list for PBXProject "test_vecmath_osx" */;
@@ -390,11 +388,12 @@
 				D066E4AC14EDB2930002B5CE /* TestRunner.cpp in Sources */,
 				D066E4BE14EDB2930002B5CE /* TimeConstraint.cpp in Sources */,
 				D066E4C014EDB2930002B5CE /* XmlTestReporter.cpp in Sources */,
-				D072287A14F3112F00B6773D /* test_main.cpp in Sources */,
+				D072287A14F3112F00B6773D /* main.cpp in Sources */,
 				D0C8C89014F328EF0061CAA3 /* test_vector3.cpp in Sources */,
 				D03D6FEC14FDDDA1008CA2FF /* test_vector4.cpp in Sources */,
 				D03D6FF014FDE03C008CA2FF /* test_quat.cpp in Sources */,
 				D0D55A20150D5B3800100C00 /* test_point3.cpp in Sources */,
+				D0D55A24150F0A5000100C00 /* test_matrix3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,11 +419,12 @@
 				D0D6B0D314FADBA700A8AC22 /* TestRunner.cpp in Sources */,
 				D0D6B0D414FADBA700A8AC22 /* TimeConstraint.cpp in Sources */,
 				D0D6B0D514FADBA700A8AC22 /* XmlTestReporter.cpp in Sources */,
-				D0D6B0D614FADBA700A8AC22 /* test_main.cpp in Sources */,
+				D0D6B0D614FADBA700A8AC22 /* main.cpp in Sources */,
 				D0D6B0D714FADBA700A8AC22 /* test_vector3.cpp in Sources */,
 				D03D6FED14FDDDA1008CA2FF /* test_vector4.cpp in Sources */,
 				D03D6FF114FDE03C008CA2FF /* test_quat.cpp in Sources */,
 				D0D55A21150D5B3800100C00 /* test_point3.cpp in Sources */,
+				D0D55A25150F0A5000100C00 /* test_matrix3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
