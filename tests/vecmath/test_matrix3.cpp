@@ -511,7 +511,165 @@ SUITE(Matrix3)
     }
     
     TEST(appendScale)
-    {
+    {   
+        const Vector3 scale = Vector3(1.f, 2.f, 3.f);
+        Matrix3 m(Vector3(1.1f, 1.1f, 1.1f), 
+                  Vector3(2.2f, 2.2f, 2.2f),
+                  Vector3(3.3f, 3.3f, 3.3f));
         
+        Matrix3 r = appendScale(m, scale);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(1.1f, r[0][1]);
+        CHECK_EQUAL(1.1f, r[0][2]);
+        CHECK_EQUAL(4.4f, r[1][0]);
+        CHECK_EQUAL(4.4f, r[1][1]);
+        CHECK_EQUAL(4.4f, r[1][2]);
+        CHECK_EQUAL(9.9f, r[2][0]);
+        CHECK_EQUAL(9.9f, r[2][1]);
+        CHECK_EQUAL(9.9f, r[2][2]);
     }
+    
+    TEST(prependScale)
+    {
+        const Vector3 scale = Vector3(1.f, 2.f, 3.f);
+        Matrix3 m(Vector3(1.1f, 1.1f, 1.1f), 
+                  Vector3(2.2f, 2.2f, 2.2f),
+                  Vector3(3.3f, 3.3f, 3.3f));
+        
+        Matrix3 r = prependScale(scale, m);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(2.2f, r[0][1]);
+        CHECK_CLOSE(3.3f, r[0][2], kEpsilon);
+        CHECK_EQUAL(2.2f, r[1][0]);
+        CHECK_EQUAL(4.4f, r[1][1]);
+        CHECK_CLOSE(6.6f, r[1][2], kEpsilon);
+        CHECK_EQUAL(3.3f, r[2][0]);
+        CHECK_EQUAL(6.6f, r[2][1]);
+        CHECK_EQUAL(9.9f, r[2][2]);
+    }
+
+    TEST(mulPerElem)
+    {
+        const Matrix3 id = Matrix3::identity();
+        Matrix3 m(Vector3(1.1f, 2.2f, 3.3f), 
+                  Vector3(4.4f, 5.5f, 6.6f),
+                  Vector3(7.7f, 8.8f, 9.9f));
+
+        Matrix3 r = mulPerElem(id, m);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(0.0f, r[0][1]);
+        CHECK_EQUAL(0.0f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[1][0]);
+        CHECK_EQUAL(5.5f, r[1][1]);
+        CHECK_EQUAL(0.0f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[2][0]);
+        CHECK_EQUAL(0.0f, r[2][1]);
+        CHECK_EQUAL(9.9f, r[2][2]);
+    }
+    
+    TEST(absPerElem)
+    {
+        Matrix3 m(Vector3(1.1f, -2.2f, 3.3f), 
+                  Vector3(-4.4f, -5.5f, -6.6f),
+                  Vector3(7.7f, -8.8f, 9.9f));
+
+        Matrix3 r = absPerElem(m);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(2.2f, r[0][1]);
+        CHECK_EQUAL(3.3f, r[0][2]);
+        CHECK_EQUAL(4.4f, r[1][0]);
+        CHECK_EQUAL(5.5f, r[1][1]);
+        CHECK_EQUAL(6.6f, r[1][2]);
+        CHECK_EQUAL(7.7f, r[2][0]);
+        CHECK_EQUAL(8.8f, r[2][1]);
+        CHECK_EQUAL(9.9f, r[2][2]);
+    }
+    
+    TEST(transpose)
+    {
+        Matrix3 m(Vector3(1.1f, 2.2f, 3.3f), 
+                  Vector3(4.4f, 5.5f, 6.6f),
+                  Vector3(7.7f, 8.8f, 9.9f));
+        
+        Matrix3 r = transpose(m);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(2.2f, r[1][0]);
+        CHECK_EQUAL(3.3f, r[2][0]);
+        CHECK_EQUAL(4.4f, r[0][1]);
+        CHECK_EQUAL(5.5f, r[1][1]);
+        CHECK_EQUAL(6.6f, r[2][1]);
+        CHECK_EQUAL(7.7f, r[0][2]);
+        CHECK_EQUAL(8.8f, r[1][2]);
+        CHECK_EQUAL(9.9f, r[2][2]);
+    }
+    
+    TEST(inverse)
+    {
+        Matrix3 r = inverse(Matrix3::identity());
+        
+        // inverse of identity is identity
+        CHECK_CLOSE(1.0f, r[0][0], kEpsilon);
+        CHECK_EQUAL(0.0f, r[0][1]);
+        CHECK_EQUAL(0.0f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[1][0]);
+        CHECK_CLOSE(1.0f, r[1][1], kEpsilon);
+        CHECK_EQUAL(0.0f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[2][0]);
+        CHECK_EQUAL(0.0f, r[2][1]);
+        CHECK_CLOSE(1.0f, r[2][2], kEpsilon);
+        
+        // rotation inverse
+        const float radians = DEGTORAD * 45.f;
+        r = inverse(Matrix3::rotationX(radians));
+        Matrix3 expected = Matrix3::rotationX(-radians);
+        
+        for (size_t i = 0; i < 3; i++)
+            for (size_t j = 0; j < 3; j++)
+                CHECK_CLOSE(expected[i][j], r[i][j], kEpsilon);
+    }
+    
+    TEST(determinant)
+    {
+        Matrix3 m(Vector3(-2.0f, -1.0f, 2.0f), 
+                  Vector3(2.0f, 1.0f, 0.0f),
+                  Vector3(3.0f, 3.0f, -1.0f));
+        CHECK_EQUAL(6.f, determinant(m));
+    }
+    
+#if TEST_VECMATH_IMPL_CURRENT != TEST_VECMATH_IMPL_SSE
+    TEST(select)
+    {
+        Matrix3 m(Vector3(1.1f, 2.2f, 3.3f), 
+                  Vector3(4.4f, 5.5f, 6.6f),
+                  Vector3(7.7f, 8.8f, 9.9f));
+        
+        Matrix3 r = select(Matrix3::identity(), m, false);
+        CHECK_EQUAL(1.0f, r[0][0]);
+        CHECK_EQUAL(0.0f, r[0][1]);
+        CHECK_EQUAL(0.0f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[1][0]);
+        CHECK_EQUAL(1.0f, r[1][1]);
+        CHECK_EQUAL(0.0f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[2][0]);
+        CHECK_EQUAL(0.0f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        
+        r = select(Matrix3::identity(), m, true);
+        
+        CHECK_EQUAL(1.1f, r[0][0]);
+        CHECK_EQUAL(2.2f, r[0][1]);
+        CHECK_EQUAL(3.3f, r[0][2]);
+        CHECK_EQUAL(4.4f, r[1][0]);
+        CHECK_EQUAL(5.5f, r[1][1]);
+        CHECK_EQUAL(6.6f, r[1][2]);
+        CHECK_EQUAL(7.7f, r[2][0]);
+        CHECK_EQUAL(8.8f, r[2][1]);
+        CHECK_EQUAL(9.9f, r[2][2]);
+    }
+#endif
 }
