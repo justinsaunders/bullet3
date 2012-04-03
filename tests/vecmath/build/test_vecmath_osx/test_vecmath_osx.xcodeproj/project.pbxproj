@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0209A5D152AAF0700B641DB /* test_matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0209A5C152AAF0700B641DB /* test_matrix4.cpp */; };
+		D0209A5E152AAF0700B641DB /* test_matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0209A5C152AAF0700B641DB /* test_matrix4.cpp */; };
 		D03D6FEC14FDDDA1008CA2FF /* test_vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */; };
 		D03D6FED14FDDDA1008CA2FF /* test_vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */; };
 		D03D6FF014FDE03C008CA2FF /* test_quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */; };
@@ -79,6 +81,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0209A5C152AAF0700B641DB /* test_matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_matrix4.cpp; path = ../../../test_matrix4.cpp; sourceTree = "<group>"; };
 		D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_vector4.cpp; path = ../../../test_vector4.cpp; sourceTree = "<group>"; };
 		D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_quat.cpp; path = ../../../test_quat.cpp; sourceTree = "<group>"; };
 		D066E43F14EDB2710002B5CE /* test_vecmath_osx_std */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_vecmath_osx_std; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,11 +189,12 @@
 			children = (
 				D0C8C89214F332F70061CAA3 /* arch_defines.h */,
 				D072287914F3112F00B6773D /* main.cpp */,
-				D0D55A23150F0A5000100C00 /* test_matrix3.cpp */,
-				D0D55A1F150D5B3800100C00 /* test_point3.cpp */,
-				D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */,
 				D0C8C88F14F328EF0061CAA3 /* test_vector3.cpp */,
+				D0D55A1F150D5B3800100C00 /* test_point3.cpp */,
 				D03D6FEB14FDDDA1008CA2FF /* test_vector4.cpp */,
+				D03D6FEF14FDE03C008CA2FF /* test_quat.cpp */,
+				D0D55A23150F0A5000100C00 /* test_matrix3.cpp */,
+				D0209A5C152AAF0700B641DB /* test_matrix4.cpp */,
 				D066E4C114EDB2A30002B5CE /* vecmath */,
 				D066E44C14EDB2930002B5CE /* unittest++ */,
 			);
@@ -394,6 +398,7 @@
 				D03D6FF014FDE03C008CA2FF /* test_quat.cpp in Sources */,
 				D0D55A20150D5B3800100C00 /* test_point3.cpp in Sources */,
 				D0D55A24150F0A5000100C00 /* test_matrix3.cpp in Sources */,
+				D0209A5D152AAF0700B641DB /* test_matrix4.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +430,7 @@
 				D03D6FF114FDE03C008CA2FF /* test_quat.cpp in Sources */,
 				D0D55A21150D5B3800100C00 /* test_point3.cpp in Sources */,
 				D0D55A25150F0A5000100C00 /* test_matrix3.cpp in Sources */,
+				D0209A5E152AAF0700B641DB /* test_matrix4.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
