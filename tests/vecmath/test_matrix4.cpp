@@ -736,6 +736,335 @@ SUITE(Matrix4)
         CHECK_EQUAL(0.f, r[3][2]);
         CHECK_EQUAL(1.f, r[3][3]);
         
-        // other two cases
+        // value * identity        
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        
+        r = m * Transform3::identity();
+        
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.5f, r[3][3]);     
+        
+        Transform3 t(Vector3(0.0f, 0.1f, 0.2f),
+                     Vector3(0.4f, 0.5f, 0.6f),
+                     Vector3(0.8f, 0.9f, 1.0f),
+                     Vector3(1.2f, 1.3f, 1.4f));
+        
+        r = Matrix4::identity() * t;
+        
+        // identity * value
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(0.0f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.0f, r[3][3]);
+    }
+    
+    TEST(operatorAddEquals)
+    {
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        Matrix4 r = Matrix4::identity();
+        r += m;
+        
+        CHECK_EQUAL(1.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(1.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(2.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(2.5f, r[3][3]);
+    }
+    
+    TEST(operatorMinusEquals)
+    {
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        Matrix4 r = m;
+        r -= Matrix4::identity();
+        
+        CHECK_EQUAL(-1.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(-0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(0.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(0.5f, r[3][3]);
+    }
+
+    TEST(operatorMultiplyEqualScalar)
+    {
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        Matrix4 r = m;
+        r *= 2.0f;
+        
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.2f, r[0][1]);
+        CHECK_EQUAL(0.4f, r[0][2]);
+        CHECK_EQUAL(0.6f, r[0][3]);
+        
+        CHECK_EQUAL(0.8f, r[1][0]);
+        CHECK_EQUAL(1.0f, r[1][1]);
+        CHECK_EQUAL(1.2f, r[1][2]);
+        CHECK_EQUAL(1.4f, r[1][3]);
+        
+        CHECK_EQUAL(1.6f, r[2][0]);
+        CHECK_EQUAL(1.8f, r[2][1]);
+        CHECK_EQUAL(2.0f, r[2][2]);
+        CHECK_EQUAL(2.2f, r[2][3]);
+        
+        CHECK_EQUAL(2.4f, r[3][0]);
+        CHECK_EQUAL(2.6f, r[3][1]);
+        CHECK_EQUAL(2.8f, r[3][2]);
+        CHECK_EQUAL(3.0f, r[3][3]);
+    }
+    
+    TEST(operatorMultiplyEqualMatrix4)
+    {
+        Matrix4 r = Matrix4::identity();
+        r *= Matrix4::identity();
+        
+        CHECK_EQUAL(1.f, r[0][0]);
+        CHECK_EQUAL(0.f, r[0][1]);
+        CHECK_EQUAL(0.f, r[0][2]);
+        CHECK_EQUAL(0.f, r[0][3]);
+        
+        CHECK_EQUAL(0.f, r[1][0]);
+        CHECK_EQUAL(1.f, r[1][1]);
+        CHECK_EQUAL(0.f, r[1][2]);
+        CHECK_EQUAL(0.f, r[1][3]);
+        
+        CHECK_EQUAL(0.f, r[2][0]);
+        CHECK_EQUAL(0.f, r[2][1]);
+        CHECK_EQUAL(1.f, r[2][2]);
+        CHECK_EQUAL(0.f, r[2][3]);
+        
+        CHECK_EQUAL(0.f, r[3][0]);
+        CHECK_EQUAL(0.f, r[3][1]);
+        CHECK_EQUAL(0.f, r[3][2]);
+        CHECK_EQUAL(1.f, r[3][3]);
+        
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        
+        r = Matrix4::identity();
+        r *= m;
+        
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.5f, r[3][3]);
+        
+        r = m;
+        r *= Matrix4::identity();
+        
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.5f, r[3][3]);
+    }
+    
+    TEST(operatorMultiplyEqualTransform3)
+    {
+        Matrix4 r = Matrix4::identity();
+        r *= Transform3::identity();
+        
+        CHECK_EQUAL(1.f, r[0][0]);
+        CHECK_EQUAL(0.f, r[0][1]);
+        CHECK_EQUAL(0.f, r[0][2]);
+        CHECK_EQUAL(0.f, r[0][3]);
+        
+        CHECK_EQUAL(0.f, r[1][0]);
+        CHECK_EQUAL(1.f, r[1][1]);
+        CHECK_EQUAL(0.f, r[1][2]);
+        CHECK_EQUAL(0.f, r[1][3]);
+        
+        CHECK_EQUAL(0.f, r[2][0]);
+        CHECK_EQUAL(0.f, r[2][1]);
+        CHECK_EQUAL(1.f, r[2][2]);
+        CHECK_EQUAL(0.f, r[2][3]);
+        
+        CHECK_EQUAL(0.f, r[3][0]);
+        CHECK_EQUAL(0.f, r[3][1]);
+        CHECK_EQUAL(0.f, r[3][2]);
+        CHECK_EQUAL(1.f, r[3][3]);
+        
+        // value * identity        
+        Matrix4 m(Vector4(0.0f, 0.1f, 0.2f, 0.3f),
+                  Vector4(0.4f, 0.5f, 0.6f, 0.7f),
+                  Vector4(0.8f, 0.9f, 1.0f, 1.1f),
+                  Vector4(1.2f, 1.3f, 1.4f, 1.5f));
+        r = m;
+        r *= Transform3::identity();
+        
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.3f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.7f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(1.1f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.5f, r[3][3]);     
+        
+        Transform3 t(Vector3(0.0f, 0.1f, 0.2f),
+                     Vector3(0.4f, 0.5f, 0.6f),
+                     Vector3(0.8f, 0.9f, 1.0f),
+                     Vector3(1.2f, 1.3f, 1.4f));
+        
+        r = Matrix4::identity();
+        r *= t;
+        
+        // identity * value
+        CHECK_EQUAL(0.0f, r[0][0]);
+        CHECK_EQUAL(0.1f, r[0][1]);
+        CHECK_EQUAL(0.2f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[0][3]);
+        
+        CHECK_EQUAL(0.4f, r[1][0]);
+        CHECK_EQUAL(0.5f, r[1][1]);
+        CHECK_EQUAL(0.6f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[1][3]);
+        
+        CHECK_EQUAL(0.8f, r[2][0]);
+        CHECK_EQUAL(0.9f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(0.0f, r[2][3]);
+        
+        CHECK_EQUAL(1.2f, r[3][0]);
+        CHECK_EQUAL(1.3f, r[3][1]);
+        CHECK_EQUAL(1.4f, r[3][2]);
+        CHECK_EQUAL(1.0f, r[3][3]);
+    }
+    
+    TEST(identity)
+    {
+        const Matrix4 r = Matrix4::identity();
+        
+        CHECK_EQUAL(1.0f, r[0][0]);
+        CHECK_EQUAL(0.0f, r[0][1]);
+        CHECK_EQUAL(0.0f, r[0][2]);
+        CHECK_EQUAL(0.0f, r[0][3]);
+        
+        CHECK_EQUAL(0.0f, r[1][0]);
+        CHECK_EQUAL(1.0f, r[1][1]);
+        CHECK_EQUAL(0.0f, r[1][2]);
+        CHECK_EQUAL(0.0f, r[1][3]);
+        
+        CHECK_EQUAL(0.0f, r[2][0]);
+        CHECK_EQUAL(0.0f, r[2][1]);
+        CHECK_EQUAL(1.0f, r[2][2]);
+        CHECK_EQUAL(0.0f, r[2][3]);
+        
+        CHECK_EQUAL(0.0f, r[3][0]);
+        CHECK_EQUAL(0.0f, r[3][1]);
+        CHECK_EQUAL(0.0f, r[3][2]);
+        CHECK_EQUAL(1.0f, r[3][3]);
     }
 }
