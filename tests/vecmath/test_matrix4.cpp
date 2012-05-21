@@ -1067,4 +1067,290 @@ SUITE(Matrix4)
         CHECK_EQUAL(0.0f, r[3][2]);
         CHECK_EQUAL(1.0f, r[3][3]);
     }
+    
+    TEST(rotationX)
+    {
+        const float   radians = 45 * DEGTORAD;
+        const Matrix4 m = Matrix4::rotationX(radians);
+        const float   sin0 = sin(radians);
+        const float   cos0 = cos(radians);
+        
+        CHECK_EQUAL(1.f, m[0][0]);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        CHECK_EQUAL(0.f, m[0][3]);
+        
+        CHECK_EQUAL(0.f,  m[1][0]);
+        CHECK_CLOSE(cos0, m[1][1], kEpsilon);
+        CHECK_CLOSE(sin0, m[1][2], kEpsilon);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        CHECK_EQUAL(0.f,  m[2][0]);
+        CHECK_CLOSE(-sin0,m[2][1], kEpsilon);
+        CHECK_CLOSE(cos0, m[2][2], kEpsilon);
+        CHECK_EQUAL(0.0f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL(0.f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(rotationY)
+    {
+        const float   radians = 45 * DEGTORAD;
+        const Matrix4 m = Matrix4::rotationY(radians);
+        const float   sin0 = sin(radians);
+        const float   cos0 = cos(radians);
+        
+        CHECK_CLOSE(cos0, m[0][0], kEpsilon);
+        CHECK_EQUAL(0.f,  m[0][1]);
+        CHECK_CLOSE(-sin0,m[0][2], kEpsilon);
+        CHECK_EQUAL(0.f, m[0][3]);
+        
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_EQUAL(1.f, m[1][1]);
+        CHECK_EQUAL(0.f, m[1][2]);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        CHECK_CLOSE(sin0, m[2][0], kEpsilon);
+        CHECK_EQUAL(0.f,  m[2][1]);
+        CHECK_CLOSE(cos0, m[2][2], kEpsilon);
+        CHECK_EQUAL(0.0f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL(0.f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(rotationZ)
+    {
+        const float   radians = 45 * DEGTORAD;
+        const Matrix4 m = Matrix4::rotationZ(radians);
+        const float   sin0 = sin(radians);
+        const float   cos0 = cos(radians);
+        
+        CHECK_CLOSE(cos0, m[0][0], kEpsilon);
+        CHECK_CLOSE(sin0, m[0][1], kEpsilon);
+        CHECK_EQUAL(0.f,  m[0][2]);
+        CHECK_EQUAL(0.f,  m[0][3]);
+        
+        CHECK_CLOSE(-sin0, m[1][0], kEpsilon);
+        CHECK_CLOSE(cos0,  m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f,   m[1][2]);
+        CHECK_EQUAL(0.f,  m[1][3]);
+        
+        CHECK_EQUAL(0.f, m[2][0]);
+        CHECK_EQUAL(0.f, m[2][1]);
+        CHECK_EQUAL(1.f, m[2][2]);
+        CHECK_EQUAL(0.f,  m[2][3]);
+
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL(0.f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(rotationZYX)
+    {
+        const float radians = 45 * DEGTORAD;
+        const Matrix4 z = Matrix4::rotationZ(radians);
+        const Matrix4 y = Matrix4::rotationY(radians);
+        const Matrix4 x = Matrix4::rotationX(radians);
+        
+        const Matrix4 expected = Matrix4::rotationZYX(Vector3(radians));
+        const Matrix4 r = z * y * x; 
+        
+        for (size_t i = 0; i < 3; i++)
+            for (size_t j = 0; j < 3; j++)
+                CHECK_CLOSE(expected[i][j], r[i][j], kEpsilon);
+    }
+
+    TEST(scale)
+    {
+        const Matrix4 m = Matrix4::scale(Vector3(1.1f, 2.2f, 3.3f));
+        
+        CHECK_EQUAL(1.1f, m[0][0]);
+        CHECK_EQUAL(0.0f, m[0][1]);
+        CHECK_EQUAL(0.0f, m[0][2]);
+        CHECK_EQUAL(0.0f, m[0][3]);
+        
+        CHECK_EQUAL(0.0f, m[1][0]);
+        CHECK_EQUAL(2.2f, m[1][1]);
+        CHECK_EQUAL(0.0f, m[1][2]);
+        CHECK_EQUAL(0.0f, m[1][3]);
+        
+        CHECK_EQUAL(0.0f, m[2][0]);
+        CHECK_EQUAL(0.0f, m[2][1]);
+        CHECK_EQUAL(3.3f, m[2][2]);
+        CHECK_EQUAL(0.0f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL(0.f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(translation)
+    {
+        const Matrix4 m = Matrix4::translation(Vector3(1.1f, 2.2f, 3.3f));
+        
+        CHECK_EQUAL(1.0f, m[0][0]);
+        CHECK_EQUAL(0.0f, m[0][1]);
+        CHECK_EQUAL(0.0f, m[0][2]);
+        CHECK_EQUAL(0.0f, m[0][3]);
+        
+        CHECK_EQUAL(0.0f, m[1][0]);
+        CHECK_EQUAL(1.0f, m[1][1]);
+        CHECK_EQUAL(0.0f, m[1][2]);
+        CHECK_EQUAL(0.0f, m[1][3]);
+        
+        CHECK_EQUAL(0.0f, m[2][0]);
+        CHECK_EQUAL(0.0f, m[2][1]);
+        CHECK_EQUAL(1.0f, m[2][2]);
+        CHECK_EQUAL(0.0f, m[2][3]);
+        
+        CHECK_EQUAL(1.1f, m[3][0]);
+        CHECK_EQUAL(2.2f, m[3][1]);
+        CHECK_EQUAL(3.3f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(lookAt)
+    {
+        const Point3 eyePos(0.f, 0.f, 0.f);
+        const Point3 target(10.f, 0.f, 0.f);
+        const Vector3 up(0.f, 1.f, 0.f);
+        const Matrix4 m = Matrix4::lookAt(eyePos, target, up);
+     
+        // left
+        CHECK_EQUAL(0.f, m[0][0]);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(-1.f, m[0][2]);
+        CHECK_EQUAL(0.f, m[0][3]);
+
+        // up 
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_CLOSE(1.f, m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f, m[1][2]);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        // forward
+        CHECK_CLOSE(1.f, m[2][0], kEpsilon);
+        CHECK_EQUAL(0.f, m[2][1]);
+        CHECK_EQUAL(0.f, m[2][2]);
+        CHECK_EQUAL(0.f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL(0.f, m[3][2]);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
+    TEST(perspective)
+    {
+        const float fovyRadians = 100 * DEGTORAD;
+        const float aspect = 1.0f;
+        const float zNear = 1.0f;
+        const float zFar = 1000.0f;
+        const Matrix4 m = Matrix4::perspective(fovyRadians, aspect, zNear, zFar);
+        
+        // tests
+        const float ooTanHalfTheta = 1.0f / tanf(fovyRadians * 0.5f);
+        
+        CHECK_CLOSE(ooTanHalfTheta / aspect, m[0][0], kEpsilon);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        CHECK_EQUAL(0.f, m[0][3]);
+      
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_CLOSE(ooTanHalfTheta, m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f, m[1][2]);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        CHECK_EQUAL(0.f, m[2][0]);
+        CHECK_EQUAL(0.f, m[2][1]);
+        CHECK_EQUAL(-(zNear + zFar)/(zFar - zNear), m[2][2]);
+        CHECK_EQUAL(-1.f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_EQUAL( (-2.f * zNear * zFar)/(zFar - zNear), m[3][2]);
+        CHECK_EQUAL(0.f, m[3][3]);
+    }
+    
+    TEST(frustum)
+    {
+        const float left = -100.f;
+        const float right = 100.f;
+        const float bottom = -100.f;
+        const float top = 100.f;
+        const float near = 1.f;
+        const float far = 1000.f;
+        const Matrix4 m = Matrix4::frustum(left, right, bottom, top, near, far);
+        
+        // tests
+        const float A = (right + left)/(right - left);
+        const float B = (top + bottom)/(top - bottom);
+        const float C = (far + near)/(near - far);
+        const float D = (2.f * far * near)/(near - far);
+    
+        CHECK_CLOSE((2.f * near)/(right - left), m[0][0], kEpsilon);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        CHECK_EQUAL(0.f, m[0][3]);
+        
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_CLOSE((2.f * near)/(top - bottom), m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f, m[1][2]);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        CHECK_CLOSE(A, m[2][0], kEpsilon);
+        CHECK_CLOSE(B, m[2][1], kEpsilon);
+        CHECK_CLOSE(C, m[2][2], kEpsilon);
+        CHECK_EQUAL(-1.f, m[2][3]);
+        
+        CHECK_EQUAL(0.f, m[3][0]);
+        CHECK_EQUAL(0.f, m[3][1]);
+        CHECK_CLOSE(D, m[3][2], kEpsilon);
+        CHECK_EQUAL(0.f, m[3][3]);
+    }
+    
+    TEST(orthographic)
+    {
+        const float left = -100.f;
+        const float right = 100.f;
+        const float bottom = -100.f;
+        const float top = 100.f;
+        const float near = 1.f;
+        const float far = 1000.f;
+        const Matrix4 m = Matrix4::orthographic(left, right, bottom, top, near, far);
+        
+        // tests
+        const float tx = -(right+left)/(right-left);
+        const float ty = -(top+bottom)/(top-bottom);
+        const float tz = -(far+near)/(far-near);
+        
+        CHECK_CLOSE(2.f/(right-left), m[0][0], kEpsilon);
+        CHECK_EQUAL(0.f, m[0][1]);
+        CHECK_EQUAL(0.f, m[0][2]);
+        CHECK_EQUAL(0.f, m[0][3]);
+        
+        CHECK_EQUAL(0.f, m[1][0]);
+        CHECK_CLOSE(2.f/(top-bottom), m[1][1], kEpsilon);
+        CHECK_EQUAL(0.f, m[1][2]);
+        CHECK_EQUAL(0.f, m[1][3]);
+        
+        CHECK_EQUAL(0.f, m[2][0]);
+        CHECK_EQUAL(0.f, m[2][1]);
+        CHECK_CLOSE(-2.f/(far-near), m[2][2], kEpsilon);
+        CHECK_EQUAL(0.f, m[2][3]);
+        
+        CHECK_EQUAL(tx, m[3][0]);
+        CHECK_EQUAL(ty, m[3][1]);
+        CHECK_CLOSE(tz, m[3][2], kEpsilon);
+        CHECK_EQUAL(1.f, m[3][3]);
+    }
+    
 }
